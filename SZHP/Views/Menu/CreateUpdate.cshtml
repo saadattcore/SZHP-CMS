@@ -1,0 +1,65 @@
+﻿@model SZHPCMS.Models.MenuViewModel
+
+@{
+    ViewBag.Title = "Create Update Menu";
+}
+
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                @if (ViewBag.Operation != null)
+                {
+                    <span>@ViewBag.Operation&nbsp;Menu</span>
+                }
+            </h1>
+        </div>
+    </div>
+    <!-- /. ROW  -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("CreateUpdate", "Menu"))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @*@Html.ValidationSummary(false)*@
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TitleEnglish, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.TitleEnglish, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TitleEnglish)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TitleArabic, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.TitleArabic, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TitleArabic)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="@ViewBag.Operation" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="itemID" value="@ViewBag.MenuIDToUpdate" />
+                        <input type="hidden" name="operation" value="@ViewBag.Operation" />
+                    }
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+</div>

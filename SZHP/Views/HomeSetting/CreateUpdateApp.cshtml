@@ -1,0 +1,248 @@
+﻿@model SZHPCMS.Models.MobileAppViewModel
+@using SZHPCMS.Utilities
+
+@{
+    ViewBag.Title = "Create Update Mobile Application";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                @ViewBag.Operation Mobile App
+            </h1>
+        </div>
+    </div>
+    <!-- /. ROW  -->
+    <div class="well">
+        @using (Html.BeginForm("CreateUpdateApp", "HomeSetting", FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            if (ViewBag.Message != null)
+            {
+
+                <div class="row" style="margin-top:6px;margin-bottom:0px">
+                    <div class="col-md-12">
+                        <span class="alert alert-success" style="display:block"><strong>@ViewBag.Message</strong></span>
+                    </div>
+                </div>
+                <hr style="margin-bottom:23px;margin-top:0px" />
+            }
+
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="/MobileApplication/Index">&nbsp;Back to List</a>
+                </div>
+                <hr />
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.HiddenFor(x => x.MobileApplicationId)
+                        <label class="control-label">@LocalizedString.T("lblNameEnglish")</label>
+                        @Html.TextBoxFor(x => x.NameEn, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.NameEn)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">@LocalizedString.T("lblNameArabic")   @*@(global::Resources.Resources.lblNameAr)*@</label>
+                        @Html.TextBoxFor(x => x.NameAr, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.NameAr)
+                    </div>
+                </div>
+                <!-- /.panel -->
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">@LocalizedString.T("lblDescriptionEn") @*@(global::Resources.Resources.lblCMSTitleEn)*@</label>
+                        @Html.TextAreaFor(x => x.DescriptionEn, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.DescriptionEn)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">@LocalizedString.T("lblDescriptionAr") @*@(global::Resources.Resources.lblCMSTitleAr)*@</label>
+                        @Html.TextAreaFor(x => x.DescriptionAr, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.DescriptionAr)
+                    </div>
+                </div>
+                <!-- /.panel -->
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">@LocalizedString.T("lblAppStoreURL") @*@(global::Resources.Resources.lblEmail)*@</label>
+                        @Html.TextBoxFor(x => x.AppStoreURL, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.AppStoreURL)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">@LocalizedString.T("lblPlayStoreURL")   @*@(global::Resources.Resources.lblWebsite)*@</label>
+                        @Html.TextBoxFor(x => x.PlayStoreURL, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.PlayStoreURL)
+                    </div>
+                </div>
+                <!-- /.panel -->
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">@LocalizedString.T("lblBlackBerryWorldURL") @*@(global::Resources.Resources.lblEmail)*@</label>
+                        @Html.TextBoxFor(x => x.BlackBerryWorldURL, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.BlackBerryWorldURL)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">@LocalizedString.T("lblWinStoreURL")  @*@(global::Resources.Resources.lblFacebook)*@</label>
+                        @Html.TextBoxFor(x => x.WinStoreURL, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.WinStoreURL)
+                    </div>
+                </div>
+
+            </div>
+            
+            <!--panel -->
+
+            <div class="row">
+                <div class="col-md-6 uploadImg">
+                    <div class="form-group">
+                        <label class="control-label">@LocalizedString.T("lblAppLogo") </label>
+                        @Html.TextBoxFor(x => x.Document, new { type = "file", @class = "form-control", accept = "image/*", onchange = "ValidateExtension(this, 'jpg,png,gif')" })
+                    </div>
+                </div>
+
+                <div class="col-md-6 uploadImg">
+                    @if (!string.IsNullOrEmpty(Model.DocumentName))
+                    {
+                    @Html.HiddenFor(x => x.DocumentName)
+                    <div style="margin-top:25px">
+                        @*<img src='/Images/MobileApp/@Model.MobileApplicationId.ToString()/@Model.DocumentName' alt='@Model.DocumentName' width="50" height="50" />*@
+
+                        <img alt='@Model.DocumentName' src='@string.Format("/{0}/MobileApp/{1}_{2}", SZHPCMS.Common.Constants.DOCUMENT_UPLOAD_FOLDER, @Model.MobileApplicationId.ToString(), @Model.DocumentName)' width="50" height="50" />
+
+                    </div>
+                    }
+                </div>
+
+                <!-- /.panel -->
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 uploadImg">
+                    <div class="form-group">
+                        <label class="control-label">@LocalizedString.T("lblIphoneQRImage") </label>
+                        @Html.TextBoxFor(x => x.IPhoneQRCodeDoc, new { type = "file", @class = "form-control", accept = "image/*" , onchange = "ValidateExtension(this, 'jpg,png,gif')" })
+                    </div>
+                </div>
+
+                <div class="col-md-6 uploadImg">
+                    @if (!string.IsNullOrEmpty(Model.IPhoneQRCodeDocName))
+                    {
+                    @Html.HiddenFor(x => x.IPhoneQRCodeDocName)
+                    <div style="margin-top:25px">
+                        @*<img src='/Images/MobileApp/@Model.MobileApplicationId.ToString()/@Model.IPhoneQRCodeDocName' alt='@Model.IPhoneQRCodeDocName' width="50" height="50" />*@
+
+                        <img alt='@Model.IPhoneQRCodeDocName' src='@string.Format("/{0}/MobileApp/{1}_{2}", SZHPCMS.Common.Constants.DOCUMENT_UPLOAD_FOLDER, @Model.MobileApplicationId.ToString(), @Model.IPhoneQRCodeDocName)' width="50" height="50" />
+
+
+                    </div>
+                    }
+                </div>
+
+                <!-- /.panel -->
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 uploadImg">
+                    <div class="form-group">
+                        <label class="control-label">@LocalizedString.T("lblAndroidQRImage") </label>
+                        @Html.TextBoxFor(x => x.AndroidQRCodeDoc, new { type = "file", @class = "form-control", accept = "image/*", onchange = "ValidateExtension(this, 'jpg,png,gif')" })
+                    </div>
+                </div>
+
+                <div class="col-md-6 uploadImg">
+                    @if (!string.IsNullOrEmpty(Model.AndroidQRCodeDocName))
+                    {
+                    @Html.HiddenFor(x => x.AndroidQRCodeDocName)
+                    <div style="margin-top:25px">
+                        @*<img src='/Images/MobileApp/@Model.MobileApplicationId.ToString()/@Model.AndroidQRCodeDocName' alt='@Model.AndroidQRCodeDocName' width="50" height="50" />*@
+
+                        <img alt='@Model.AndroidQRCodeDocName' src='@string.Format("/{0}/MobileApp/{1}_{2}", SZHPCMS.Common.Constants.DOCUMENT_UPLOAD_FOLDER, @Model.MobileApplicationId.ToString(), @Model.AndroidQRCodeDocName)' width="50" height="50" />
+
+                    </div>
+                    }
+                </div>
+
+                <!-- /.panel -->
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 uploadImg">
+                    <div class="form-group">
+                        <label class="control-label">@LocalizedString.T("lblBlackBerryQRImage") </label>
+                        @Html.TextBoxFor(x => x.BlackBerryQRCodDoc, new { type = "file", @class = "form-control", accept = "image/*", onchange = "ValidateExtension(this, 'jpg,png,gif')" })
+                    </div>
+                </div>
+
+                <div class="col-md-6 uploadImg">
+                    @if (!string.IsNullOrEmpty(Model.BlackBerryQRCodDocName))
+                    {
+                    @Html.HiddenFor(x => x.BlackBerryQRCodDocName)
+                    <div style="margin-top:25px">
+                        @*<img src='/Images/MobileApp/@Model.MobileApplicationId.ToString()/@Model.BlackBerryQRCodDocName' alt='@Model.BlackBerryQRCodDocName' width="50" height="50" />*@
+
+                        <img alt='@Model.BlackBerryQRCodDocName' src='@string.Format("/{0}/MobileApp/{1}_{2}", SZHPCMS.Common.Constants.DOCUMENT_UPLOAD_FOLDER, @Model.MobileApplicationId.ToString(), @Model.BlackBerryQRCodDocName)' width="50" height="50" />
+
+                    </div>
+                    }
+                </div>
+
+                <!-- /.panel -->
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 uploadImg">
+                    <div class="form-group">
+                        <label class="control-label">@LocalizedString.T("lblWindowsQRImage") </label>
+                        @Html.TextBoxFor(x => x.WinQRCodeDoc, new { type = "file", @class = "form-control", accept = "image/*", onchange = "ValidateExtension(this, 'jpg,png,gif')" })
+                    </div>
+                </div>
+
+                <div class="col-md-6 uploadImg">
+                    @if (!string.IsNullOrEmpty(Model.WinQRCodeDocName))
+                    {
+                        @Html.HiddenFor(x => x.WinQRCodeDocName)
+                        <div style="margin-top:25px">
+                            @*<img src='/Images/MobileApp/@Model.MobileApplicationId.ToString()/@Model.WinQRCodeDocName' alt='@Model.WinQRCodeDocName' width="50" height="50" />*@
+
+                            <img src='@string.Format("/{0}/MobileApp/{1}_{2}", SZHPCMS.Common.Constants.DOCUMENT_UPLOAD_FOLDER, @Model.MobileApplicationId, @Model.WinQRCodeDocName)' width="50" height="50" />
+                        </div>
+                    }
+                </div>
+
+                <!-- /.panel -->
+            </div>
+            
+            <!-- /.panel -->
+
+            <div class="row">
+                <div class="col-md-3 col-xs-12 text-right margin-top-20 float-right">
+                    <input type="submit" value="@ViewBag.Operation" name="Update" id="Update" class="btn btn-primary btn-block" />
+                </div>
+            </div>
+
+            <input type="hidden" name="itemID" value="@ViewBag.ItemID" />
+            <input type="hidden" name="operation" value="@ViewBag.Operation" />
+        }
+    </div>
+</div>

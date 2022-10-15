@@ -1,0 +1,302 @@
+﻿
+
+<input type="hidden" id="selMenu" name="selMenu" value="-1" />
+
+<ul class="nav" id="Left-Menu">
+
+    <li>
+        <a id="Home" href="@Url.Action("DashBoard", "Home")">
+            <i class="fa fa-dashboard"></i>
+            @SZHPCMS.Utilities.LocalizedString.T("Dashboard")
+        </a>
+    </li>
+
+    <li>
+        <a href="#" data-toggle="collapse" data-target="#subMenuGeneral" onclick="return false">
+            <img src="~/Content/images/DashboardIcons/side-menu-icons/settings.png" />
+            @SZHPCMS.Utilities.LocalizedString.T("GeneralSettings") <span class="fa arrow"></span>
+        </a>
+
+        <ul id="subMenuGeneral" class="nav collapse">
+            <li>
+                <a id="Setting" href="@Url.Action("CreateUpdate","Setting")" onclick="SubMenuClick()"><i class="fa fa-minus-square-o" style="margin-right:16px"></i>@SZHPCMS.Utilities.LocalizedString.T("SiteSettings") </a>
+            </li>
+            <li style="display:none">
+                <a id="HomeSetting" href="@Url.Action("CreateUpdate", "HomeSetting")">
+                    <i class="fa fa-minus-square-o"></i>
+                    @SZHPCMS.Utilities.LocalizedString.T("HomePageSettings")
+                </a>
+            </li>
+            <li>
+                <a id="MobileApplication" href="/MobileApplication/Index">
+                    <i class="fa fa-minus-square-o"></i>
+                    @SZHPCMS.Utilities.LocalizedString.T("MobileApplications")
+                </a>
+            </li>
+            <li style="display:none">
+                <a id="CannedEmail" href="@Url.Action("Index","CannedEmail")">
+                    <i class="fa fa-minus-square-o"></i>
+                    @SZHPCMS.Utilities.LocalizedString.T("CannedEmails")
+                </a>
+            </li>
+
+        </ul>
+    </li>
+
+    <li>
+        <a href="#" data-toggle="collapse" data-target="#subMenuContent" onclick="return false">
+            <img src="~/Content/images/DashboardIcons/side-menu-icons/content-management.png" />
+            @SZHPCMS.Utilities.LocalizedString.T("ContentManagement") <span class="fa arrow"></span>
+        </a>
+
+        <ul id="subMenuContent" class="nav collapse">
+            <li>
+                <a id="Page" href="@Url.Action("Index","Page")">
+                    <i class="fa fa-minus-square-o"></i>
+                    @SZHPCMS.Utilities.LocalizedString.T("Pages")
+                </a>
+            </li>
+            <li>
+                <a id="Menu" href="@Url.Action("Index","Menu")">
+                    <i class="fa fa-minus-square-o"></i>
+                    @SZHPCMS.Utilities.LocalizedString.T("Menu")
+                </a>
+            </li>
+            <li>
+                <a style="display:none" id="Link" href="@Url.Action("Index","Link")">
+                    <i class="fa fa-minus-square-o"></i>
+                    @SZHPCMS.Utilities.LocalizedString.T("LinksManagement")
+                </a>
+            </li>
+            <li>
+                <a style="display:none" id="SiteMap" href="@Url.Action("Index","SiteMap")">
+                    <i class="fa fa-minus-square-o"></i>
+                    @SZHPCMS.Utilities.LocalizedString.T("SiteMap")
+                </a>
+            </li>
+
+        </ul>
+    </li>
+
+    <li>
+        <a id="PartnerService" href="@Url.Action("Index", "PartnerService")">
+            <img src="~/Content/images/DashboardIcons/side-menu-icons/partner-services.png" />
+            @SZHPCMS.Utilities.LocalizedString.T("PartnerServices")
+        </a>
+    </li>
+
+    <li>
+        <a id="FAQ" href="@Url.Action("Index","FAQ")">
+            <img src="~/Content/images/DashboardIcons/side-menu-icons/faqs.png" />
+            @SZHPCMS.Utilities.LocalizedString.T("FAQ")
+        </a>
+    </li>
+
+    <li>
+        <a href="#" data-toggle="collapse" data-target="#subMenuArchive" onclick="return false">
+            <img src="~/Content/images/DashboardIcons/side-menu-icons/archives.png" />
+            @SZHPCMS.Utilities.LocalizedString.T("ArchiveSettings") <span class="fa arrow"></span>
+        </a>
+
+        <ul id="subMenuArchive" class="nav collapse">
+            <li>
+                <a id="Rules" href="@Url.Action("IndexRules", "Archive")">
+                    <i class="fa fa-minus-square-o"></i>
+                    @SZHPCMS.Utilities.LocalizedString.T("RulesAndRegulations")
+                </a>
+            </li>
+            <li>
+                <a id="News" href="@Url.Action("Index","News")">
+                    <i class="fa fa-minus-square-o"></i>
+                    @SZHPCMS.Utilities.LocalizedString.T("News")
+                </a>
+            </li>
+            <li>
+                <a id="Event" href="@Url.Action("Index","Event")">
+                    <i class="fa fa-minus-square-o"></i>
+                    @SZHPCMS.Utilities.LocalizedString.T("Events")
+                </a>
+            </li>
+            <li>
+                <a id="Magzine" href="@Url.Action("IndexMagzine", "Archive")">
+                    <i class="fa fa-minus-square-o"></i>
+                    @SZHPCMS.Utilities.LocalizedString.T("Magzines")
+                </a>
+            </li>
+            <li>
+                <a id="Form" href="@Url.Action("Index", "Form")">
+                    <i class="fa fa-minus-square-o"></i>
+                    @SZHPCMS.Utilities.LocalizedString.T("FormManagement")
+                </a>
+            </li>
+
+        </ul>
+    </li>
+    <li>
+        <a style="display:none" id="Banner" href="@Url.Action("Index","Banner")">
+            <i class="fa fa-desktop"></i>
+            @SZHPCMS.Utilities.LocalizedString.T("Banners")
+        </a>
+    </li>
+    <li>
+        <a href="#" data-toggle="collapse" data-target="#subMenuContact" onclick="return false"><i class="fa fa-sitemap" aria-expanded="false"></i>@SZHPCMS.Utilities.LocalizedString.T("ContactsSettings")<span class="fa arrow"></span></a>
+
+        <ul id="subMenuContact" class="nav collapse">
+            <li>
+                <a id="ManageContact" href="@Url.Action("Index", "Contact")">
+                    <i class="fa fa-minus-square-o"></i>
+                    @SZHPCMS.Utilities.LocalizedString.T("ManageContact")
+                </a>
+            </li>
+            <li>
+                <a id="News" href="@Url.Action("Index", "ContactUs")">
+                    <i class="fa fa-minus-square-o"></i>
+                    @SZHPCMS.Utilities.LocalizedString.T("ContactUs")
+                </a>
+            </li>
+            <li>
+                <a id="Event" href="@Url.Action("Index", "ChairmanContact")">
+                    <i class="fa fa-minus-square-o"></i>
+                    @SZHPCMS.Utilities.LocalizedString.T("ChairmanContact")
+                </a>
+            </li>
+            <li>
+                <a id="Event" href="@Url.Action("IndexSupportRequest", "Contact")">
+                    <i class="fa fa-minus-square-o"></i>
+                    @SZHPCMS.Utilities.LocalizedString.T("SupportRequest")
+                </a>
+            </li>
+
+        </ul>
+    </li>
+    <li>
+        <a id="EServices" style="display:none" href="@Url.Action("Index","EServices")">
+            <img src="~/Content/images/DashboardIcons/side-menu-icons/eservices.png" />
+            @SZHPCMS.Utilities.LocalizedString.T("EService")
+        </a>
+    </li>
+    <li>
+        <a id="EParticipation" href="@Url.Action("Index", "EParticipation")">
+            <img src="~/Content/images/DashboardIcons/side-menu-icons/eparticipation.png" />
+            @SZHPCMS.Utilities.LocalizedString.T("ParticipationPolicy")
+        </a>
+    </li>
+
+    <li>
+        <a id="Project" href="@Url.Action("Index","Project")">
+            <img src="~/Content/images/DashboardIcons/side-menu-icons/manage-projects.png" />
+            @SZHPCMS.Utilities.LocalizedString.T("ManageProjects")
+        </a>
+    </li>
+    <li>
+        <a id="OpenData" href="@Url.Action("Index", "OpenData")">
+            <img src="~/Content/images/DashboardIcons/side-menu-icons/open-data.png" />
+            @SZHPCMS.Utilities.LocalizedString.T("ManageOpenData")
+        </a>
+    </li>
+    <li>
+        <a id="Conditions" href="@Url.Action("Index", "Conditions")">
+            <i class="fa fa-desktop"></i>
+            @SZHPCMS.Utilities.LocalizedString.T("ConditionsAndRequirements")
+        </a>
+    </li>
+
+    <li>
+        <a id="HelpIndex" href="/Help/Index">
+            <img src="~/Content/images/DashboardIcons/side-menu-icons/help.png" />
+            @SZHPCMS.Utilities.LocalizedString.T("ManageHelp")
+        </a>
+    </li>
+    @*<li>
+            <a id="ResearchStudy" href="@Url.Action("Index","ResearchStudy")"><i class="fa fa-desktop"></i> Research, Study & Publish</a>
+        </li>*@
+    <li>
+        <a style="display:none" id="TrainingPlan" href="@Url.Action("Index","TrainingPlan")">
+            <i class="fa fa-desktop"></i>
+            @SZHPCMS.Utilities.LocalizedString.T("TrainingPlans")
+        </a>
+    </li>
+    <li>
+        <a id="Subscriber" href="@Url.Action("Index","Subscriber")">
+            <img src="~/Content/images/DashboardIcons/side-menu-icons/subscription.png" />
+            @SZHPCMS.Utilities.LocalizedString.T("SubscriptionsManagement")
+        </a>
+    </li>
+    <li>
+        <a style="display:none" id="Gallery" href="@Url.Action("Index","Gallery")">
+            <i class="fa fa-desktop"></i>
+            @SZHPCMS.Utilities.LocalizedString.T("Gallary")
+        </a>
+    </li>
+
+    <li>
+        <a id="Career" href="@Url.Action("Index","Career")">
+            <img src="~/Content/images/DashboardIcons/side-menu-icons/careers.png" />
+            @SZHPCMS.Utilities.LocalizedString.T("Careers")
+        </a>
+    </li>
+    <li>
+        <a id="CareerIndustry" href="@Url.Action("Index","CareerIndustry")">
+            <img src="~/Content/images/DashboardIcons/side-menu-icons/career-industry.png" /></i>
+            @SZHPCMS.Utilities.LocalizedString.T("ManageCareerIndustry")
+        </a>
+    </li>
+    <li>
+        <a id="JobApplicants" href="@Url.Action("JobsApplicants","Career")">
+            <img src="~/Content/images/DashboardIcons/side-menu-icons/careers.png" />
+            @SZHPCMS.Utilities.LocalizedString.T("JobApplicants")
+        </a>
+    </li>
+
+    @*<li>
+            <a id="Polls" href="@Url.Action("IndexPolls","Common")"><i class="fa fa-desktop"></i>@SZHPCMS.Utilities.LocalizedString.T("CallCenterPolls")</a>
+        </li>*@
+
+    <li>
+        <a id="FeedBack" href="@Url.Action("IndexFeedBack", "Common")">
+            <img src="~/Content/images/DashboardIcons/side-menu-icons/feedback.png" />
+            @SZHPCMS.Utilities.LocalizedString.T("FeedBack")
+        </a>
+    </li>
+
+    <li>
+        <a id="Poll" href="@Url.Action("IndexPolling", "Common")">
+            <img src="~/Content/images/DashboardIcons/side-menu-icons/poll.png" />Manage Poll
+        </a>
+    </li>
+
+    @*<li>
+            <a id="PollOption" href="@Url.Action("IndexPollOption", "Common")"><i class="fa fa-desktop"></i>Manage Poll Option</a>
+        </li>*@
+
+    <li>
+        <a id="HappinessStats" href="@Url.Action("HappinessMeterStats", "Common")">
+            <img src="~/Content/images/DashboardIcons/side-menu-icons/happiness.png" />Happiness Meter
+        </a>
+    </li>
+
+    <li>
+        <a  id="SocialMedia" href="@Url.Action("Index", "SocialMedia")">
+            @*<img src="~/Content/images/DashboardIcons/side-menu-icons/happiness.png" />*@<i style="margin-right:18px" class="fa fa-facebook"></i>Social Media
+        </a>
+    </li>
+
+    <li>
+        <a id="SocialMedia" href="@Url.Action("ApplicantCategoryIndex", "Applicant")">
+            @*<img src="~/Content/images/DashboardIcons/side-menu-icons/happiness.png" />*@<i style="margin-right:18px" class="fa fa-facebook"></i>Applicant
+        </a>
+    </li>
+
+    <li>
+        <a id="SocialMedia" href="@Url.Action("ContentCategoryIndex", "Applicant")">
+            @*<img src="~/Content/images/DashboardIcons/side-menu-icons/happiness.png" />*@<i style="margin-right:18px" class="fa fa-facebook"></i>Content Category
+        </a>
+    </li>
+
+    <li>
+        <a id="SocialMedia" href="@Url.Action("ContentSubCategoryIndex", "Applicant")">
+            @*<img src="~/Content/images/DashboardIcons/side-menu-icons/happiness.png" />*@<i style="margin-right:18px" class="fa fa-facebook"></i>Content Sub Category
+        </a>
+    </li>
+
+</ul>

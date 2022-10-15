@@ -1,0 +1,315 @@
+﻿@model SZHPCMS.Models.CareerJobViewModel
+
+@{
+    ViewBag.Title = "Create Update Job";
+}
+
+
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                <span>@ViewBag.Operation Career Job</span>
+            </h1>
+        </div>
+    </div>
+    <!-- /. ROW  -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.ActionLink("Back to List", "Index")
+                    @*<span class="float-right">@Html.ActionLink("Manage Career Industry", "IndexCareerIndustry")</span>*@
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("CreateUpdate", "Career", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CareerIndustry, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.DropDownListFor(model => model.CareerIndustryId, @Model.CareerIndustryDDL, "-- Select Industry --")
+                                    @Html.ValidationMessageFor(model => model.CareerIndustryId)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CareerType, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.DropDownListFor(model => model.CareerTypeId, @Model.CareerTypeDDL, "-- Select Career Type --")
+                                    @Html.ValidationMessageFor(model => model.CareerTypeId)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TitleAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.TitleAr, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TitleAr)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TitleEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.TitleEn, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TitleEn)
+                                </div>
+                            </div>
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.LinkUrl, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.LinkUrl, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.LinkUrl)
+                                    </div>
+                                </div>*@
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.TitleAr, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.TitleAr, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.TitleAr)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.TitleEn, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.TitleEn, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.TitleEn)
+                                    </div>
+                                </div>*@
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DescriptionAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextAreaFor(model => model.DescriptionAr, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.DescriptionAr)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DescriptionEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextAreaFor(model => model.DescriptionEn, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.DescriptionEn)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.LocationAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.LocationAr, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.LocationAr)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.LocationEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.LocationEn, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.LocationEn)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.SalaryAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.SalaryAr, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.SalaryAr)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.SalaryEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.SalaryEn, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.SalaryEn)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.SalaryCurrencyAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.SalaryCurrencyAr, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.SalaryCurrencyAr)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.SalaryCurrencyEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.SalaryCurrencyEn, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.SalaryCurrencyEn)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MinumumEductionAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.MinumumEductionAr, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.MinumumEductionAr)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MinumumEductionEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.MinumumEductionEn, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.MinumumEductionEn)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MinumumExperienceAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.MinumumExperienceAr, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.MinumumExperienceAr)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MinumumExperienceEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.MinumumExperienceEn, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.MinumumExperienceEn)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DesiredSkillsAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.DesiredSkillsAr, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.DesiredSkillsAr)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DesiredSkillsEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.DesiredSkillsEn, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.DesiredSkillsEn)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.BenefitsAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.BenefitsAr, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.BenefitsAr)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.BenefitsEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.BenefitsEn, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.BenefitsEn)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ResponsibilitiesAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.ResponsibilitiesAr, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ResponsibilitiesAr)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ResponsibilitiesEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.ResponsibilitiesEn, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ResponsibilitiesEn)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ShiftAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.ShiftAr, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ShiftAr)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ShiftEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.ShiftEn, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ShiftEn)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-4">
+                                    <input type="file" multiple name="fileUpload" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="@ViewBag.Operation" class="btn btn-default" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+
+                                    @if (Model != null)
+                                    {
+
+                                        if (Model.Documents != null)
+                                        {
+                                            if (Model.Documents.Count > 0)
+                                            {
+                                                foreach (var item in Model.Documents)
+                                                {
+                                                    <div class="img-box" id="divImage_@item.DocumentId">
+
+                                                        @*<img src="/Images/Links/@Model.CareerJobId/@item.FileName" alt="@item.FileName" width="140" height="140" id="@item.DocumentId" />*@
+                                                        <img src='@string.Format("/{0}/Career/{1}_{2}", SZHPCMS.Common.Constants.DOCUMENT_UPLOAD_FOLDER, @Model.CareerJobId, @item.FileName)' width="100" height="100" />
+                                                        <br />
+                                                        <hr />
+                                                        <span>
+                                                            <a class="fa fa-trash-o" href='javascript:RemoveImage(@item.DocumentId)'>&nbsp; Delete Image</a>
+                                                        </span>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                    }
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <input type="hidden" value="@ViewBag.Operation" name="operation" />
+                        <input type="hidden" value="@ViewBag.ItemID" name="itemID" />
+                    }
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+
+    <script type="text/javascript">
+
+        var RemoveImage = function (imageID) {
+
+            var divImageID = 'divImage_' + imageID;
+
+            $.ajax({
+
+                url: '@Url.Action("RemoveDocument","Career")',
+                type: "POST",
+                data: JSON.stringify({ docID: imageID }),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+
+                    if (data.Deleted == true) {
+
+                        $('#' + divImageID).remove();
+
+                    }
+
+                },
+
+                error: function (data) {
+                    alert(data.statusText);
+                }
+
+
+            });
+
+        }
+
+    </script>
+}

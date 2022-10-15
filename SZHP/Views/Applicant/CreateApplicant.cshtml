@@ -1,0 +1,237 @@
+﻿@model SZHPCMS.Models.ApplicantCategoryViewModel
+
+@{
+    ViewBag.Title = "Create Update Applicant Categories";
+}
+
+
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                @if (ViewBag.Operation != null)
+                {
+                    <span>@ViewBag.Operation&nbsp;FAQ</span>
+                }
+            </h1>
+        </div>
+    </div>
+    <!-- /. ROW  -->
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.ActionLink("Back to List", "ApplicantCategoryIndex")
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("CreateApplicant", "Applicant", FormMethod.Post))
+                    {
+
+                        @Html.AntiForgeryToken()
+                        <h4 class="">Applicant Category </h4>
+                        <br />
+                        <input id="hfCounter" value="1" type="hidden" name="hfCounter" />
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Name Ar</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" name="CategoryNameAr" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Name En</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" name="CategoryNameEn" />
+                                </div>
+                            </div>
+
+                        </div>
+
+                        // subcategory
+
+                        <hr />
+                        <div class="form-group" id="divSubCategory">
+                            <h4 class="col-md-9">Applicant Sub Categories</h4>
+                            <div class="col-md-3"><button class="btn btn-primary " style="border-radius:0px" disabled><i class="fa fa-plus"></i>&nbsp;&nbsp;Add City Description</button></div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br />
+                        <button class="btn" style="background:transparent" onclick="AddMoreSubCategory(); return false"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add More</button>
+                        <br />
+                        <br />
+
+                        <div class="form-horizontal">
+                            <div id="divSubCatContainer">
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Name Ar</label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="SubCategoryNameAr_1" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Name En</label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="SubCategoryNameEn_1" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Header Text Ar</label>
+                                    <div class="col-md-4">
+                                        <textarea class="form-control" name="SubCategoryHeaderAr_1" ></textarea>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Header Text En</label>
+                                    <div class="col-md-4">
+                                        <textarea class="form-control" name="SubCategoryHeaderEn_1" ></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="@ViewBag.Operation" class="btn btn-success" />
+                            </div>
+
+                        </div>
+
+                        //start of content category and subcategory section below
+
+                        <hr />
+                        <div id="dicContentCategory" style="display:none">
+
+                            <div class="form-group" id="divApplicantContentCategory">
+                                <h4 class="col-md-9">Applicant Content Categories</h4>
+                                <div class="col-md-3"><button class="btn btn-primary " style="border-radius:0px"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add City Description</button></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <br />
+                            <button class="btn" style="background:transparent" onclick="AddMoreSubCategory(); return false"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add More</button>
+                            <br />
+                            <br />
+                            <div class="form-horizontal">
+                                <div id="divSubCatContainer">
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">Sub Category</label>
+                                        <div class="col-md-4">
+                                            <select>
+                                                <option>AA</option>
+                                                <option>BB</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">Name Ar</label>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" name="SubCategoryNameAr" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">Name En</label>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" name="SubCategoryNameEn" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="@ViewBag.Operation" class="btn btn-success" />
+                                </div>
+
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="divContentSubCategory" style="display:none">
+
+                            <div class="form-group">
+                                <h4 class="col-md-9">Applicant Content Sub Categories</h4>
+                                <div class="col-md-3"><button class="btn btn-primary " style="border-radius:0px"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add City Description</button></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <br />
+                            <button class="btn" style="background:transparent" onclick="AddMoreSubCategory(); return false"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add More</button>
+                            <br />
+                            <br />
+                            <div class="form-horizontal">
+                                <div id="divSubCatContainer">
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">Sub Category</label>
+                                        <div class="col-md-4">
+                                            <select>
+                                                <option>AA</option>
+                                                <option>BB</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">Name Ar</label>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" name="SubCategoryNameAr" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">Name En</label>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" name="SubCategoryNameEn" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="@ViewBag.Operation" class="btn btn-success" />
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="itemID" value="@ViewBag.ItemID" />
+                        <input type="hidden" name="operation" value="@ViewBag.Operation" />
+                    }
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+</div>
+@section scripts
+    {
+
+    <script type="text/javascript">
+        function AddMoreSubCategory() {
+
+
+
+            var nextID = parseInt($('#hfCounter').val());
+            nextID = nextID + 1;
+
+            $('#divSubCatContainer').append('<div class="form-group"><label class="control-label col-md-2">Name Ar</label><div class="col-md-4"><input type="text" class="form-control" name=' + '"' + 'SubCategoryNameAr_' + nextID + '"' + '/></div></div>');
+            $('#divSubCatContainer').append('<div class="form-group"><label class="control-label col-md-2">Name En</label><div class="col-md-4"><input type="text" class="form-control" name=' + '"' + 'SubCategoryNameEn_' + nextID + '"' + '" /></div></div>');
+
+
+            $('#divSubCatContainer').append('<div class="form-group"><label class="control-label col-md-2">Header Text Ar</label><div class="col-md-4"><textarea class="form-control" name=' + '"' + 'SubCategoryHeaderAr_' + nextID + '"' + '></textarea></div></div>');
+            $('#divSubCatContainer').append('<div class="form-group"><label class="control-label col-md-2">Header Text En</label><div class="col-md-4"><textarea class="form-control" name=' + '"' + 'SubCategoryHeaderEn_' + nextID + '"' + '></textarea></div></div>');
+
+
+            //$('#divSubCatContainer').append('<div class="form-group"><label class="control-label col-md-2">Name Ar</label><div class="col-md-4"><input type="text" class="form-control" name="SubCategoryNameAr"/></div></div>');
+            //$('#divSubCatContainer').append('<div class="form-group"><label class="control-label col-md-2">Name En</label><div class="col-md-4"><input type="text" class="form-control" name="SubCategoryNameEn"/></div></div>');
+
+            parseInt($('#hfCounter').val(nextID));
+
+        }
+    </script>
+
+    <script src="//cdn.ckeditor.com/4.5.7/full/ckeditor.js"></script>
+    <script type="text/javascript"> CKEDITOR.replace('editor_en'); </script>
+    <script type="text/javascript"> CKEDITOR.replace('editor_ar'); </script>
+}

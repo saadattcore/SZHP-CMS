@@ -1,0 +1,98 @@
+﻿@model SZHPCMS.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_CMSLayout.cshtml";
+}
+
+
+<div class="header-flat">
+    <div class="wrapper">
+        <div class="logo-home">
+            <a href="#.">@HttpContext.Current.Application[SZHPCMS.Common.Constants.SESSION_CMS_TITLE]</a>
+            @*<img src="~/Content/images/szhp-logo.gif" alt='' width="267" height="109" />*@
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="login-wrapp marginFixLogin">
+    <h3>Login</h3>
+    <br />
+    @if (ViewBag.Error != null)
+    {
+        <div class="error row-control">@ViewBag.Error</div>
+    }
+
+    @using (Html.BeginForm("Login", "User", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="box-content">
+            @Html.ValidationSummary(true)
+            <!--<div class="panel-body">
+            <div class="alert alert-success">
+                <i class="fa fa-check-circle"></i> <strong>Well done!</strong> You successfully read this important alert message.
+            </div>
+            </div>
+            <div class="panel-body">
+            <div class="alert alert-danger">
+                <i class="fa fa-exclamation-triangle"></i> <strong>Oh snap!</strong> Change a few things up and try submitting again.
+            </div>
+            </div>-->
+
+            <div class="row-control">
+                <label class="label-role" for="email">User Name:</label>
+                <div class="field-wrapp">
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control custom-control", @id = "email" })
+                    @*<input type="email" class="form-control custom-control" name="email">*@
+                    <i class="fa fa-user"></i>
+                    @Html.ValidationMessageFor(m => m.UserName)
+                </div>
+            </div>
+            <div class="row-control">
+                <label class="label-role" for="password">Password:</label>
+                <div class="field-wrapp">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control custom-control", @id = "password" })
+                    @*<input type="password" class="form-control custom-control" name="password">*@
+                    <i class="fa fa-lock"></i>
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+            </div>
+            <div class="row-control">
+                <div class="remeber">
+                    <label class="checkbox-inline">
+                        @Html.CheckBoxFor(m => m.RememberMe)
+                        Remember Me
+                    </label>
+                </div>
+                <div class="forgot"> <a href="~/User/ForgotPassword">Forgot Password</a> </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="bottom-box">
+            <img src="~/Content/assets/images/login-bottom.png" />
+        </div>
+        <div class="btns-row">
+            <div class="btn-lft" style="display:none">
+                <a href="@Url.Action("Register","User")" class="btn btn-default btn-block">CREATE ACCOUNT</a>
+            </div>
+            <div class="btn-rght">
+                <button type="submit" class="btn btn-primary btn-block">LOGIN</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    }
+</div>
+<style type="text/css">
+    .forgot {
+        margin-top: 5px;
+    }
+
+        .forgot a {
+            text-decoration: none;
+        }
+
+            .forgot a:hover {
+                text-decoration: none;
+            }
+</style>

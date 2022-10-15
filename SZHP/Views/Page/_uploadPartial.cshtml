@@ -1,0 +1,31 @@
+﻿@model IEnumerable<string>
+
+@{
+
+    Layout = null;
+}
+<script src="~/Content/assets/js/jquery-1.10.2.js"></script>
+@foreach (var image in Model)
+{
+    <a href="#" class="returnImage" data-url="@Request.Url.GetLeftPart(UriPartial.Authority)@image">
+        <img src="@image" alt="@image" id="#image" data-source="@image" width="120" height="120" />
+    </a>
+}
+
+
+
+<script type="text/javascript">
+
+    var funcNum = @(Request["CKEditorFuncNum"] + ";")
+
+    $(document).ready(function () {
+        $(".returnImage").click("click", function (e) {
+            var urlImage = $(this).attr("data-url");
+
+            window.opener.CKEDITOR.tools.callFunction(funcNum, urlImage);
+
+            window.close();
+
+        });
+    });
+</script>

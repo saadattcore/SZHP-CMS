@@ -1,0 +1,123 @@
+﻿@model IEnumerable<SZHPCMS.Models.ContactViewModel>
+
+@{
+    ViewBag.Title = "Contacts";
+}
+
+
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                Contact Management
+            </h1>
+            @if (TempData[SZHPCMS.Common.Constants.MESSAGE] != null)
+            {
+                <div class="success">@TempData[SZHPCMS.Common.Constants.MESSAGE]</div>
+            }
+        </div>
+    </div>
+    <!-- /. ROW  -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.ActionLink("Create New", "CreateUpdate")
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ContactId)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CityAr)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CityEn)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.LocationEn)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.LocationAr)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Latitude)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Longitude)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Phone)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Fax)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Email)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Contact_Id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.City_Ar)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.City_En)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Location_En)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Location_Ar)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Latitude)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Longitude)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Phone)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Fax)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Email)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').dataTable();
+        });
+    </script>
+}

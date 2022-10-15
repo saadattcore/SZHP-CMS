@@ -1,0 +1,105 @@
+﻿@model IEnumerable<SZHPCMS.Models.PollViewModel>
+
+@{
+    ViewBag.Title = "Polls";
+}
+
+@section Header{
+    <link href="~/Content/assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+}
+
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12" id="dvHeader">
+            <h1 class="page-header">
+                Manage Polls @*<small>ITJ CMS</small>*@
+            </h1>
+            @*<div class="error">Error</div>*@
+            @if (TempData[SZHPCMS.Common.Constants.MESSAGE] != null)
+            {
+                <div class="success">@TempData[SZHPCMS.Common.Constants.MESSAGE]</div>
+            }
+        </div>
+    </div>
+    <!-- /. ROW  -->
+
+    <div class="row">
+        <div class="col-md-12">
+
+            @using (Html.BeginForm("PerformActionPoll", "Common"))
+            {
+                @Html.AntiForgeryToken()
+
+
+                  <!-- Advanced Tables -->
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">
+                        @Html.ActionLink("Create New", "CreateUpdatePoll")
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover" id="tblData">
+                                <thead>
+                                    <tr>
+                                        <th class="th-checkbox"><input type="checkbox" id="chkBoxHeader" /></th>
+                                        <th>@Html.DisplayNameFor(model => model.Poll_En)</th>
+                                        <th>@Html.DisplayNameFor(model => model.Poll_Ar)</th>
+                                        <th>@Html.DisplayNameFor(model => model.Created_Date)</th>
+                                        <th class="text-center">@Html.DisplayNameFor(model => model.RowStatus)</th>
+                                        <th class="text-center" style="width:12%">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td><input type="checkbox" name="chkBoxItem" value="@item.Poll_Id" /></td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Poll_En)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Poll_Ar)
+                                            </td>
+                                            <td>@Html.DisplayFor(model => item.Created_Date)</td>
+                                            <td style="text-align:center">
+                                                @Html.DisplayFor(modelItem => item.RowStatus)
+                                            </td>
+                                            <td class="text-center" style="width:200px">
+                                                <a onclick="UpdateMenu(this, '/Common/CreateUpdatePoll')" class="btn btn-primary" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil-square-o"></i></a>
+                                                <a class="btn btn-danger" data-toggle="tooltip" data-original-title="Delete" onclick="DeleteMenu(this, '/Common/DeletePoll')"><i class="fa fa-trash-o"></i></a>
+                                                <a class="btn btn-success" data-toggle="tooltip" data-original-title="View Results" onclick="UpdateMenu(this, '/Common/PollingStats')"><i class="fa fa-book"></i></a>
+                                                <a onclick="UpdateMenu(this, '/Common/IndexPollOption')" class="btn btn-default" data-toggle="View Options" data-original-title="View Poll Options"><i class="fa fa-bars"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="dv-actions">
+                            <div class="form-group">
+                                <div class="col-md-4 nopadding">
+                                    @Html.DropDownList("ddlActions", (List<SelectListItem>)ViewBag.DropDownMenus)
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="submit" value="Go" class="btn btn-default" id="btnAction" />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!--End Advanced Tables -->
+                
+            }
+
+
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    @Scripts.Render("~/Content/CMSListing");
+}

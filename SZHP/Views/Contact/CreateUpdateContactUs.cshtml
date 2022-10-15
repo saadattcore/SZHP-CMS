@@ -1,0 +1,68 @@
+﻿@model SZHPCMS.Models.ContactUsViewModel
+
+@{
+    ViewBag.Title = "Contact Us Details";
+}
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                Contact Us Detail
+            </h1>
+        </div>
+    </div>
+    <!-- /. ROW  -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.ActionLink("Back To List", "IndexContactUs")
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("CreateUpdate", "Gallery", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.FullName, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.FullName, new { @class = "form-control", @disabled = "disabled" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @disabled = "disabled" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Subject, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.Subject, new { @class = "form-control", @disabled = "disabled" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Inquiry, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextAreaFor(model => model.Inquiry, new { @class = "form-control", @disabled = "disabled" })
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <input type="hidden" name="itemID" value="@ViewBag.ItemID" />
+                        <input type="hidden" name="operation" value="@ViewBag.Operation" />
+
+                    }
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+</div>

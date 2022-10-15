@@ -1,0 +1,250 @@
+﻿@using SZHPCMS.Utilities;
+
+@{
+    ViewBag.Title = "Dashboard";
+}
+@section styles{
+    @Styles.Render("~/Content/chartcss")
+}
+<div id="page-inner">
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                Dashboard <small>Summary of your App</small>
+            </h1>
+        </div>
+    </div>
+    <!-- /. ROW  -->
+
+    <div class="row">
+        <a href="/Page/Index">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="panel panel-primary text-center no-boder bg-color-green">
+                    <div class="panel-body">
+                        <img src="~/Content/images/DashboardIcons/big%20icons/content-management.png" />
+                        @*<h3>8,457</h3>*@
+                    </div>
+                    <div class="panel-footer back-footer-green">
+
+                        @*@(HttpContext.GetGlobalResourceObject("Resources", "lblContentManagement").ToString())*@
+                        @LocalizedString.T("ContentManagement")
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a href="/Setting/CreateUpdate">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="panel panel-primary text-center no-boder bg-color-blue">
+                    <div class="panel-body">
+                        <img src="~/Content/images/DashboardIcons/big%20icons/site-setting.png" />
+                    </div>
+                    <div class="panel-footer back-footer-blue">
+
+                        @LocalizedString.T("SiteSettings")
+
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="/FAQ/Index">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="panel panel-primary text-center no-boder bg-color-red">
+                    <div class="panel-body">
+                        <img src="~/Content/images/DashboardIcons/big%20icons/faq.png" />
+                        @*<h3>15,823 </h3>*@
+                    </div>
+                    <div class="panel-footer back-footer-red">
+
+                        @*@Resources.Resources.lblFAQ*@
+
+                        @*@(HttpContext.GetGlobalResourceObject("Resources", "lblFAQ").ToString())*@
+                        @LocalizedString.T("FAQ")
+
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="/News/Index">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="panel panel-primary text-center no-boder bg-color-brown">
+                    <div class="panel-body">
+                        <img src="~/Content/images/DashboardIcons/big%20icons/news.png" />
+                        @*<h3>36,752 </h3>*@
+                    </div>
+                    <div class="panel-footer back-footer-brown">
+                        @*@Resources.Resources.lblNews*@
+                        @*@(HttpContext.GetGlobalResourceObject("Resources", "lblNews").ToString())*@
+                        @LocalizedString.T("News")
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a href="/Event/Index">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="panel panel-primary text-center no-boder bg-color-purple">
+                    <div class="panel-body">
+                        <img src="~/Content/images/DashboardIcons/big%20icons/events.png" />
+                        @*<h3>36,752 </h3>*@
+                    </div>
+                    <div class="panel-footer back-footer-purple">
+                        @*@Resources.Resources.lblNews*@
+                        @*@(HttpContext.GetGlobalResourceObject("Resources", "lblNews").ToString())*@
+                        @LocalizedString.T("Events")
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a href="/Archive/IndexMagzine">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="panel panel-primary text-center no-boder bg-color-redvariant">
+                    <div class="panel-body">
+                        <img src="~/Content/images/DashboardIcons/big%20icons/magazines.png" />
+                        @*<h3>36,752 </h3>*@
+                    </div>
+                    <div class="panel-footer back-footer-redvariant">
+                        @*@Resources.Resources.lblNews*@
+                        @*@(HttpContext.GetGlobalResourceObject("Resources", "lblNews").ToString())*@
+                        @LocalizedString.T("Magzines")
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a href="/PartnerService/Index">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="panel panel-primary text-center no-boder bg-color-teal">
+                    <div class="panel-body">
+                        <img src="~/Content/images/DashboardIcons/big%20icons/partner-services.png" />
+                        @*<h3>36,752 </h3>*@
+                    </div>
+                    <div class="panel-footer back-footer-teal">
+                        @*@Resources.Resources.lblNews*@
+                        @*@(HttpContext.GetGlobalResourceObject("Resources", "lblNews").ToString())*@
+                        @LocalizedString.T("PartnerServices")
+                    </div>
+                </div>
+            </div>
+        </a>
+
+
+        <a href="/EServices/Index">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="panel panel-primary text-center no-boder bg-color-goldenrod">
+                    <div class="panel-body">
+                        <img src="~/Content/images/DashboardIcons/big%20icons/e-services.png" />
+                        @*<h3>36,752 </h3>*@
+                    </div>
+                    <div class="panel-footer back-footer-goldenrod">
+                        @*@Resources.Resources.lblNews*@
+                        @*@(HttpContext.GetGlobalResourceObject("Resources", "lblNews").ToString())*@
+                        @LocalizedString.T("EService")
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a href="/Subscriber/Index">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="panel panel-primary text-center no-boder bg-color-blue">
+                    <div class="panel-body">
+                        <img src="~/Content/images/DashboardIcons/big%20icons/subscription.png" />
+                        @*<h3>36,752 </h3>*@
+                    </div>
+                    <div class="panel-footer back-footer-blue">
+                        @*@Resources.Resources.lblNews*@
+                        @*@(HttpContext.GetGlobalResourceObject("Resources", "lblNews").ToString())*@
+                        @LocalizedString.T("Subscription")
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a href="/Career/Index">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="panel panel-primary text-center no-boder bg-color-brown">
+                    <div class="panel-body">
+                        <img src="~/Content/images/DashboardIcons/big%20icons/careers.png" />
+                        @*<h3>36,752 </h3>*@
+                    </div>
+                    <div class="panel-footer back-footer-brown">
+                        @*@Resources.Resources.lblNews*@
+                        @*@(HttpContext.GetGlobalResourceObject("Resources", "lblNews").ToString())*@
+                        @LocalizedString.T("Careers")
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a href="/Common/IndexPolls">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="panel panel-primary text-center no-boder bg-color-green">
+                    <div class="panel-body">
+                        <img src="~/Content/images/DashboardIcons/big%20icons/polls.png" />
+                        @*<h3>36,752 </h3>*@
+                    </div>
+                    <div class="panel-footer back-footer-green">
+                        @*@Resources.Resources.lblNews*@
+                        @*@(HttpContext.GetGlobalResourceObject("Resources", "lblNews").ToString())*@
+                        @LocalizedString.T("Polls")
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a href="/Common/IndexFeedBack">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="panel panel-primary text-center no-boder bg-color-red">
+                    <div class="panel-body">
+                        <img src="~/Content/images/DashboardIcons/big%20icons/feedback.png" />
+                        @*<h3>36,752 </h3>*@
+                    </div>
+                    <div class="panel-footer back-footer-red">
+                        @*@Resources.Resources.lblNews*@
+                        @*@(HttpContext.GetGlobalResourceObject("Resources", "lblNews").ToString())*@
+                        @LocalizedString.T("Feedbacks")
+                    </div>
+                </div>
+            </div>
+        </a>
+
+
+    </div>
+
+
+    <div class="row no-display">
+
+
+        <div class="col-md-9 col-sm-12 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Bar Chart Example
+                </div>
+                <div class="panel-body">
+                    <div id="morris-bar-chart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Donut Chart Example
+                </div>
+                <div class="panel-body">
+                    <div id="morris-donut-chart"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /. ROW  -->
+</div>
+<!-- /. PAGE INNER  -->
+@section scripts{
+    @Scripts.Render("~/bundles/chart")
+}
+

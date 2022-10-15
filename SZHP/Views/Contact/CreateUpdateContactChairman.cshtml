@@ -1,0 +1,68 @@
+﻿@model SZHPCMS.Models.ContactChairmanViewModel
+
+@{
+    ViewBag.Title = "Contact Chairman Detail";
+}
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                Contact To Chairman Details
+            </h1>
+        </div>
+    </div>
+    <!-- /. ROW  -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.ActionLink("Back To List", "IndexChairmanContact")
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("CreateUpdate", "Gallery", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.SenderName, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.SenderName, new { @class = "form-control", @disabled = "disabled" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.SenderEmail, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.SenderEmail, new { @class = "form-control", @disabled = "disabled" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EmailSubject, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.EmailSubject, new { @class = "form-control", @disabled = "disabled" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EmailBody, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextAreaFor(model => model.EmailBody, new { @class = "form-control", @disabled = "disabled" })
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <input type="hidden" name="itemID" value="@ViewBag.ItemID" />
+                        <input type="hidden" name="operation" value="@ViewBag.Operation" />
+
+                    }
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+</div>

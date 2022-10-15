@@ -1,0 +1,101 @@
+﻿@model SZHPCMS.Models.GalleryViewModel
+
+@{
+    ViewBag.Title = "Create Update Gallary";
+}
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                @ViewBag.Operation Gallery
+            </h1>
+        </div>
+    </div>
+    <!-- /. ROW  -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.ActionLink("Back To List", "Index")
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("CreateUpdate", "Gallery", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.Gallery_Id, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.Gallery_Id, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Gallery_Id)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Document_Id, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.Document_Id, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Document_Id)
+                                    </div>
+                                </div>*@
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TitleEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.TitleEn, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TitleEn)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.HiddenFor(x => x.ImageName)
+                                @Html.LabelFor(model => model.TitleAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.TitleAr, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TitleAr)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="col-md-offset-2 col-md-4">
+                                    <input type="file" class="form-control" name="upImage" onchange="ValidateExtension(this, 'jpg,png,gif')" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="@ViewBag.Operation" class="btn btn-default" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-md-offset-2 col-md-4">
+                                    @if (Model != null)
+                                    {
+                                        if (!string.IsNullOrEmpty(Model.ImageName))
+                                        {
+                                            @*<img src="/Images/Gallery/@Model.GalleryId/@Model.ImageName" alt="@Model.ImageName" width="150" height="150" />*@
+
+                                            <img src='@string.Format("/{0}/Gallery/{1}_{2}", SZHPCMS.Common.Constants.DOCUMENT_UPLOAD_FOLDER, @Model.GalleryId, @Model.ImageName)' width="150" height="150" />
+                                        }
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="itemID" value="@ViewBag.ItemID" />
+                        <input type="hidden" name="operation" value="@ViewBag.Operation" />
+
+                    }
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+</div>

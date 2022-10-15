@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <!-- Bootstrap Styles-->
+
+    <link href="~/Content/assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+
+    <link href="~/Content/assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+
+    <link href="~/Content/assets/css/custom-styles.css" rel="stylesheet" />
+    <!-- responsive Styles-->
+
+    <link href="~/Content/assets/css/responsive.css" rel="stylesheet" />
+</head>
+
+<body style=" background:#e5ebf2;">
+    @RenderBody()
+    <div class="footer-flat fixed">
+        <p>Copyright 2014 - 2016 &copy; SZHP, All Rights Reserved</p>
+    </div>
+
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+
+    <script src="~/Content/assets/js/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Js -->
+
+    <script src="~/Content/assets/js/bootstrap.min.js"></script>
+    <!-- Validator Js -->
+
+    <script src="~/Content/assets/js/bootstrapValidator.js"></script>
+    <script src="~/Scripts/Jquery/form-validation.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    @*<script type="text/javascript">
+        $('form').validate({
+            rules: {
+                email: {
+                    minlength: 3,
+                    maxlength: 15,
+                    required: true
+                },
+                password: {
+                    minlength: 3,
+                    maxlength: 15,
+                    required: true
+                }
+            },
+            highlight: function (element) {
+                $(element).closest('.field-wrapp').addClass('has-error');
+            },
+            unhighlight: function (element) {
+                $(element).closest('.field-wrapp').removeClass('has-error');
+            },
+            errorElement: 'span',
+            errorClass: 'help-block',
+            errorPlacement: function (error, element) {
+                if (element.parent('.input-group').length) {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+        });
+    </script>*@
+</body>
+</html>

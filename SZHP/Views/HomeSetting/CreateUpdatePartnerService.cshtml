@@ -1,0 +1,98 @@
+﻿@model SZHPCMS.Models.PartnerServiceViewModel
+
+@{
+    ViewBag.Title = "Create Update Partner Service";
+}
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                @ViewBag.Operation Partner Service
+            </h1>
+        </div>
+    </div>
+    <!-- /. ROW  -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.ActionLink("Back To List", "PartnerService")
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("CreateUpdatePartnerService", "HomeSetting", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NameEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.NameEn, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.NameEn)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NameAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.NameAr, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.NameAr)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Url, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.Url, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Url)
+                                </div>
+                            </div>
+
+                            @*<div class="form-group">
+                                @Html.HiddenFor(x => x.DocumentName)
+                                @Html.LabelFor(model => model.DocumentName, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.Document, new { @class = "form-control" })
+                                </div>
+                            </div>*@
+
+                            <div class="form-group">
+
+                                <div class="col-md-offset-2 col-md-4">
+                                    <input type="file" class="form-control" name="upImage" onchange="ValidateExtension(this, 'jpg,png,gif')" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="@ViewBag.Operation" class="btn btn-default" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-md-offset-2 col-md-4">
+                                    @if (Model != null)
+                                    {
+                                        if (!string.IsNullOrEmpty(Model.DocumentName))
+                                        {
+                                            @*<img src="/Images/PartnerService/@Model.PartnerServiceId/@Model.DocumentName" alt="@Model.DocumentName" width="150" height="150" />*@
+                                        <img src='@string.Format("/{0}/PartnerService/{1}_{2}", SZHPCMS.Common.Constants.DOCUMENT_UPLOAD_FOLDER, @Model.PartnerServiceId, @Model.DocumentName)' width="100" height="100" />
+                                        }
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="itemID" value="@ViewBag.ItemID" />
+                        <input type="hidden" name="operation" value="@ViewBag.Operation" />
+
+                    }
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+</div>

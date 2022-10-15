@@ -1,0 +1,298 @@
+﻿@model SZHPCMS.Models.PageViewModel
+
+@{
+    ViewBag.Title = "Create Update Web Page";
+}
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                <span>@ViewBag.Operation&nbsp;Page</span>
+            </h1>
+        </div>
+    </div>
+    <!-- /. ROW  -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("CreateUpdate", "Page", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Parent_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.DropDownListFor(model => model.Parent_Id, Model.DropDownPages, "-- Select Parent Page --")
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Page_Name_En, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(model => model.Page_Name_En, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Page_Name_En)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Page_Name_Ar, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(model => model.Page_Name_Ar, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Page_Name_Ar)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Page_Content_En, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextAreaFor(model => model.Page_Content_En, new { @class = "form-control", @id = "editor_en" })
+                                    @Html.ValidationMessageFor(model => model.Page_Content_En)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Page_Content_Ar, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextAreaFor(model => model.Page_Content_Ar, new { @class = "form-control", @id = "editor_ar" })
+                                    @Html.ValidationMessageFor(model => model.Page_Content_Ar)
+                                </div>
+                            </div>
+
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.ParentId, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.ParentId, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.ParentId)
+                                    </div>
+                                </div>*@
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Meta_Title_En, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(model => model.Meta_Title_En, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Meta_Title_En)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Meta_Title_Ar, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(model => model.Meta_Title_Ar, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Meta_Title_Ar)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Meta_Keywords_En, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(model => model.Meta_Keywords_En, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Meta_Keywords_En)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Meta_Keywords_Ar, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(model => model.Meta_Keywords_Ar, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Meta_Keywords_Ar)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Meta_Description_En, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextAreaFor(model => model.Meta_Description_En, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Meta_Description_En)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Meta_Description_Ar, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextAreaFor(model => model.Meta_Description_Ar, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Meta_Description_Ar)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Url, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(model => model.Url, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Url)
+                                </div>
+                            </div>
+
+                            @*<div class="form-group">
+                                <label class="control-label col-md-2"> @SZHPCMS.Utilities.LocalizedString.T("Document")</label>
+                                <div class="col-md-8">
+                                    <input type="file" name="upFile" class="form-control" onchange="ValidateExtension(this,'jpg,gif,png,pdf')" />
+                                </div>
+                            </div>*@
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.IsStandalone, new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.CheckBoxFor(model => model.IsStandalone)
+                                    @Html.ValidationMessageFor(model => model.IsStandalone)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Select Page Menus</label>
+                                <div class="col-md-10">
+                                    @foreach (DataContract.Implementation.MenuModel item in ViewBag.Menus)
+                                    {
+                                        if (Model.PageMenus != null)
+                                        {
+                                            if (Model.PageMenus.Exists(x => x == item.Id))
+                                            {
+                                                <span style="padding-right:20px"> <input type="checkbox" checked="checked" name="checkBoxMenu" value="@item.Id" />@item.TitleEnglish</span>
+                                            }
+                                            else
+                                            {
+                                                <span style="padding-right:20px"> <input type="checkbox" name="checkBoxMenu" value="@item.Id" />@item.TitleEnglish</span>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <span style="padding-right:20px"> <input type="checkbox" name="checkBoxMenu" value="@item.Id" />@item.TitleEnglish</span>
+                                        }
+                                    }
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="@ViewBag.Operation" class="btn btn-default" onclick="return ValidateForm()" />
+                                </div>
+                            </div>          
+                            
+                            @*@MvcHtmlString.Create(@Model.Page_Content_En)*@             
+
+                        </div>
+
+                        <input type="hidden" name="itemID" value="@ViewBag.ItemID" />
+                        <input type="hidden" name="operation" value="@ViewBag.Operation" />
+                    }
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+
+       
+    </div>
+</div>
+@section scripts
+    {
+
+    <script src="//cdn.ckeditor.com/4.5.7/full/ckeditor.js"></script>
+    @*<script type="text/javascript"> CKEDITOR.replace('editor_en'); </script>*@
+     
+<script type="text/javascript">
+    CKEDITOR.replace('editor_en', {
+        filebrowserImageBrowseUrl: '/Page/uploadPartial',
+        filebrowserImageUploadUrl: '/Page/uploadnow'
+    });
+</script>
+
+
+<script type="text/javascript">
+    CKEDITOR.replace('editor_ar', {
+        filebrowserImageBrowseUrl: '/Page/uploadPartial',
+        filebrowserImageUploadUrl: '/Page/uploadnow'
+    });
+</script>
+
+    @*<script type="text/javascript"> CKEDITOR.replace('editor_ar'); </script>*@
+
+
+    @*<script type="text/javascript">
+        CKEDITOR.replace('editor_en', { extraPlugins: 'imageuploader' });
+    
+    
+    </script>*@
+
+    
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+
+            $('[name="checkBoxMenu"]').on('change', function () {
+
+                if ($('[name="checkBoxMenu"]').is(':checked'))
+                {
+                    $('#IsStandalone').removeAttr("checked");
+                }
+
+
+
+            });
+
+            $('#IsStandalone').on('change', function ()
+            {
+
+                if ($('#IsStandalone').is(':checked') && $('#Parent_Id option:selected').index() > 0) {
+
+                    $("#Parent_Id option:first").prop('selected', 'selected');
+
+                }
+
+                if ($('#IsStandalone').is(':checked'))
+                {
+
+                    $('[name="checkBoxMenu"]').removeAttr("checked");
+
+
+
+                }
+
+            });
+
+            $('#Parent_Id').on('change', function () {
+
+
+                if ($('#IsStandalone').is(':checked') && $('#Parent_Id option:selected').index() > 0) {
+
+                    $('#IsStandalone').removeAttr("checked");
+
+                }
+
+            });
+
+
+        });
+
+        ValidateForm = function () {
+
+
+            //if ($('#IsStandalone').prop("checked") == false && $('#Parent_Id option:selected').index() == 0) {
+            //    alert('Please select stand alone or parent page');
+            //    return false;
+            //}
+
+            if ($('#IsStandalone').is(':checked') && $('#Parent_Id option:selected').index() > 0) {
+
+                alert('Either select stand alone or parent page..');
+
+            }
+            
+
+            if ($('input[name="checkBoxMenu"]:checked').length == 0 && $('#IsStandalone').prop("checked") == false)
+            {
+
+                alert('Please select atleast one menu for this page');
+                return false;
+            }
+
+
+
+        }
+
+    </script>
+
+}

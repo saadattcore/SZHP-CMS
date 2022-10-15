@@ -1,0 +1,65 @@
+﻿@model SZHPCMS.Models.EServiceCategoryViewModel
+
+@{
+    ViewBag.Title = "Create Update E-Service Category";
+}
+
+
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                <span>@ViewBag.Operation E Service Catergory</span>
+            </h1>
+        </div>
+    </div>
+    <!-- /. ROW  -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.ActionLink("Back to List", "IndexServiceCategory")
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("CreateUpdateServiceCategory", "EServices", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
+
+                            <div class="form-group">
+                                @*@Html.HiddenFor(model => model.BannerId)*@
+
+                                @Html.LabelFor(model => model.CategoryNameEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.CategoryNameEn, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.CategoryNameEn)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CategoryNameAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.CategoryNameAr, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.CategoryNameAr)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="@ViewBag.Operation" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" value="@ViewBag.Operation" name="operation" />
+                        <input type="hidden" value="@ViewBag.ItemID" name="itemID" />
+                    }
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+</div>

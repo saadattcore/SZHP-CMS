@@ -1,0 +1,151 @@
+﻿@model SZHPCMS.Models.PollViewModel
+
+@{
+    ViewBag.Title = "Create Update Poll";
+}
+
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                @if (ViewBag.Operation != null)
+                {
+                    <span>@ViewBag.Operation&nbsp;Poll</span>
+                }
+            </h1>
+        </div>
+    </div>
+    <!-- /. ROW  -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.ActionLink("Back to List", "IndexPolling")
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("CreateUpdatePoll", "Common", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="Poll_En">Poll Title (En)</label>
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(model => model.Poll_En, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Poll_En)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="Poll_En">Poll Title (Ar)</label>
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(model => model.Poll_Ar, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Poll_Ar)
+                                </div>
+                            </div>
+
+
+                            @if (Model == null)
+                            {
+                                <div class="form-group">
+                                    <div class="multi-field-wrapper" id="OptionsList">
+                                        <div class="row-fresh">
+                                            <div class="col-md-6 col-sm-6">
+                                                <div class="panel-heading CustomHeading">
+                                                    <a>Poll Options:</a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 text-right">
+                                                <button type="button" class="add-field btn btn-default">Add Option</button>
+                                            </div>
+                                        </div>
+
+
+                                        @*<button type="button" class="add-field btn btn-default">Add Option</button>*@
+                                        <div class="multi-fields">
+                                            <div class="multi-field">
+                                                <div class="row-frm">
+                                                    <label class="control-label col-md-2 PollLabel First" for="PollOpt_En">Poll Option (En)</label>
+                                                    <div class="col-md-10">
+                                                        <input type="text" class="PollInput form-control " id="PollOpt_En" data-val-required=" This field is required" data-val="true" name="PollOpt_En">
+                                                        <div class="clearfix"></div>
+                                                        @Html.ValidationMessageFor(model => model.PollOpt_En)
+                                                    </div>
+                                                </div>
+                                                <div class="row-frm">
+                                                    <label class="control-label col-md-2 PollLabel First" for="PollOpt_Ar">Poll Option (Ar)</label>
+                                                    <div class="col-md-10">
+                                                        <input type="text" class="PollInput form-control" id="PollOpt_Ar" data-val-required=" This field is required" data-val="true" name="PollOpt_Ar">
+                                                        <button type="button" class="remove-field btn btn-default">Remove</button>
+                                                        <div class="clearfix"></div>
+                                                        @Html.ValidationMessageFor(model => model.PollOpt_Ar)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            }
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="@ViewBag.Operation" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="itemID" value="@ViewBag.ItemID" />
+                        <input type="hidden" name="operation" value="@ViewBag.Operation" />
+                    }
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $('.multi-field-wrapper').each(function () {
+        var $wrapper = $('.multi-fields', this);
+        $(".add-field", $(this)).click(function (e) {
+            $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper).find('input').val('').focus();
+        });
+        $('.multi-field .row-frm .col-md-10 .remove-field', $wrapper).click(function () {
+            if ($('.multi-field', $wrapper).length > 1)
+                $(this).parent().parent().parent('.multi-field').remove();
+        });
+    });
+</script>
+
+<style type="text/css">
+    .multi-field {
+        width: 100%;
+    }
+
+    .First {
+        margin-top: 15px !important;
+    }
+
+    .multi-field .PollLabel {
+        display: inline-block;
+    }
+
+    .multi-field .PollInput {
+        display: inline-block;
+        margin: 15px 0 0;
+        width: 48%;
+    }
+
+    .row-frm {
+        overflow: hidden;
+    }
+
+    .CustomHeading a:hover {
+        text-decoration: none;
+    }
+    .row-fresh {
+        overflow:hidden;
+    }
+</style>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="98eb00c40e6a4fd98e7d9a9c47d3eecc" Name="Diagram1" ZoomLevel="67">
+        <EntityTypeShape EntityType="Database.Banner" Width="1.5" PointX="0.75" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.Banner_Documents" Width="1.5" PointX="3" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.Career_Industry" Width="1.5" PointX="1.5" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.Career_Job" Width="1.5" PointX="3.75" PointY="38.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.Career_Job_Applied" Width="1.5" PointX="6" PointY="39.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.Career_Job_Document" Width="1.5" PointX="6" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.Career_Type" Width="1.5" PointX="1.5" PointY="42.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.Document" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.Event" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.Event_Document" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.Event_Type" Width="1.5" PointX="1.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.FAQ" Width="1.5" PointX="20" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.FAQ_Category" Width="1.5" PointX="17.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.File_Types" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.Gallery" Width="1.5" PointX="3" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.Link" Width="1.5" PointX="0.75" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.Link_Document" Width="1.5" PointX="3" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.Menu" Width="1.5" PointX="8.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.News_Documents" Width="1.5" PointX="6" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.Page_Menu" Width="1.5" PointX="11" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.Row_Statuses" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.Setting" Width="1.5" PointX="3" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.Subscriber" Width="1.5" PointX="16" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.Subscription_Type" Width="1.5" PointX="13.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.Survey" Width="1.5" PointX="8.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.Survey_Question" Width="1.5" PointX="11" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.Survey_Question_Answer" Width="1.5" PointX="15.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.Survey_Question_Option" Width="1.5" PointX="13.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.Training_Plan" Width="1.5" PointX="16" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database.Training_Program" Width="1.5" PointX="13.75" PointY="12.625" IsExpanded="true" />
+        <AssociationConnector Association="Database.FK_Banner_Documents_Banner" ManuallyRouted="false" />
+        <AssociationConnector Association="Database.FK_Banner_Documents_Banner_Documents" ManuallyRouted="false" />
+        <AssociationConnector Association="Database.FK_CareerJob_CareerIndustry" ManuallyRouted="false" />
+        <AssociationConnector Association="Database.FK_Career_Job_Document_Career_Job" ManuallyRouted="false" />
+        <AssociationConnector Association="Database.FK_CareerJob_CareerType" ManuallyRouted="false" />
+        <AssociationConnector Association="Database.FK_CareerJobApplied_CareerJob" ManuallyRouted="false" />
+        <AssociationConnector Association="Database.FK_Career_Job_Document_Documents" ManuallyRouted="false" />
+        <AssociationConnector Association="Database.FK_Document_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="Database.FK_Event_Document_Documents" ManuallyRouted="false" />
+        <AssociationConnector Association="Database.FK_Gallery_Documents" ManuallyRouted="false" />
+        <AssociationConnector Association="Database.FK_Link_Document_Documents" ManuallyRouted="false" />
+        <AssociationConnector Association="Database.FK_Setting_Documents" ManuallyRouted="false" />
+        <AssociationConnector Association="Database.FK_Event_Document_Event" ManuallyRouted="false" />
+        <AssociationConnector Association="Database.FK_Event_EventType" ManuallyRouted="false" />
+        <AssociationConnector Association="Database.FK_FAQ_FAQCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="Database.FK_Link_Document_Link" ManuallyRouted="false" />
+        <AssociationConnector Association="Database.FK_PageMenu_Menu" ManuallyRouted="false" />
+        <AssociationConnector Association="Database.FK_Subscriber_SubscriptionType" ManuallyRouted="false" />
+        <AssociationConnector Association="Database.FK_SurveyQuestion_Survey" ManuallyRouted="false" />
+        <AssociationConnector Association="Database.FK_SurveyQuestionAnswer_Survey" ManuallyRouted="false" />
+        <AssociationConnector Association="Database.FK_SurveyQuestionAnswer_SurveyQuestion" ManuallyRouted="false" />
+        <AssociationConnector Association="Database.FK_SurveyQuestionOption_SurveyQuestion" ManuallyRouted="false" />
+        <AssociationConnector Association="Database.FK_SurveyQuestionAnswer_SurveyQuestionOption" ManuallyRouted="false" />
+        <AssociationConnector Association="Database.FK_TrainingPlan_TrainingProgram" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Database.News_Category" Width="1.5" PointX="1.5" PointY="0.75" />
+        <EntityTypeShape EntityType="Database.Research_Study" Width="1.5" PointX="6" PointY="17.625" />
+        <EntityTypeShape EntityType="Database.Research_Study_Category" Width="1.5" PointX="3.75" PointY="52.875" />
+        <AssociationConnector Association="Database.FK_ResearchStudy_Document" />
+        <AssociationConnector Association="Database.FK_ResearchStudy_ResearchStudyCategory" />
+        <EntityTypeShape EntityType="Database.Canned_Email_Documents" Width="2.25" PointX="20.625" PointY="12.875" />
+        <AssociationConnector Association="Database.FK_Canned_Email_Documents_Document" />
+        <AssociationConnector Association="Database.FK_Career_Job_Applied_Document" />
+        <EntityTypeShape EntityType="Database.Country" Width="1.5" PointX="18.375" PointY="1.375" />
+        <EntityTypeShape EntityType="Database.Mobile_App" Width="1.5" PointX="3" PointY="57.25" />
+        <AssociationConnector Association="Database.FK_Mobile_App_AndroidQRCode_Doc" />
+        <AssociationConnector Association="Database.FK_Mobile_App_BlackBerryQRCode_Doc" />
+        <AssociationConnector Association="Database.FK_Mobile_App_Document" />
+        <AssociationConnector Association="Database.FK_Mobile_App_IPhone_Doc" />
+        <AssociationConnector Association="Database.FK_Mobile_App_WinQRCode_Doc" />
+        <EntityTypeShape EntityType="Database.Partner_Service" Width="1.5" PointX="3" PointY="63.75" />
+        <AssociationConnector Association="Database.FK_Partner_Service_Document_Id" />
+        <EntityTypeShape EntityType="Database.Site_Map" Width="1.5" PointX="8.375" PointY="18.75" />
+        <AssociationConnector Association="Database.FK_Site_Map_Site_Map" />
+        <EntityTypeShape EntityType="Database.Help" Width="1.5" PointX="18.375" PointY="16.75" />
+        <EntityTypeShape EntityType="Database.Form" Width="1.5" PointX="3.75" PointY="67.875" />
+        <EntityTypeShape EntityType="Database.Form_Documents" Width="1.5" PointX="6" PointY="22.625" />
+        <AssociationConnector Association="Database.FK_Form_Documents_Document" />
+        <AssociationConnector Association="Database.FK_Form_Documents_Form" />
+        <EntityTypeShape EntityType="Database.Project" Width="1.5" PointX="3" PointY="71.75" />
+        <AssociationConnector Association="Database.FK_Project_Document" />
+        <EntityTypeShape EntityType="Database.Open_Data" Width="1.5" PointX="3" PointY="75.875" />
+        <AssociationConnector Association="Database.FK_Open_Data_Excel_Doc_Id" />
+        <AssociationConnector Association="Database.FK_Open_Data_PDF_Document_Id" />
+        <EntityTypeShape EntityType="Database.Rules_And_Regulation" Width="1.5" PointX="3" PointY="81.125" />
+        <AssociationConnector Association="Database.FK_RulesAndRegulation_Document" />
+        <EntityTypeShape EntityType="Database.Contact_Chairman" Width="1.5" PointX="20.375" PointY="16.75" />
+        <EntityTypeShape EntityType="Database.Technical_Support_Category" Width="1.5" PointX="18.375" PointY="21.875" />
+        <EntityTypeShape EntityType="Database.Technical_Support_Request" Width="1.5" PointX="20.625" PointY="21" />
+        <EntityTypeShape EntityType="Database.User_Type" Width="1.5" PointX="18.375" PointY="25.875" />
+        <AssociationConnector Association="Database.FK_Technical_Support_Request_Category" />
+        <AssociationConnector Association="Database.FK_Technical_Support_Request_User_Type" />
+        <AssociationConnector Association="Database.FK_Technical_Support_Request_Document" />
+        <EntityTypeShape EntityType="Database.Magzine" Width="1.5" PointX="3" PointY="85.25" />
+        <AssociationConnector Association="Database.FK_Magzine_Cover_Doc_Id" />
+        <AssociationConnector Association="Database.FK_Magzine_File_Doc_Id" />
+        <EntityTypeShape EntityType="Database.E_Participation" Width="1.5" PointX="3.5" PointY="90.375" />
+        <AssociationConnector Association="Database.FK_E_Participation_DocumentID" />
+        <EntityTypeShape EntityType="Database.Contact" Width="1.5" PointX="22.375" PointY="5.75" />
+        <EntityTypeShape EntityType="Database.Contact_Us" Width="1.5" PointX="20.5" PointY="0.75" />
+        <EntityTypeShape EntityType="Database.E_Service_Category" Width="1.5" PointX="7" PointY="27.75" />
+        <EntityTypeShape EntityType="Database.E_Services" Width="1.5" PointX="9.25" PointY="23.125" />
+        <AssociationConnector Association="Database.FK_E_Services_Document" />
+        <AssociationConnector Association="Database.FK_E_Services_Category" />
+        <EntityTypeShape EntityType="Database.Call_Center_Polling" Width="1.5" PointX="11.375" PointY="22.75" />
+        <EntityTypeShape EntityType="Database.Conditions_And_Requirements" Width="1.5" PointX="22.375" PointY="16.75" />
+        <EntityTypeShape EntityType="Database.News" Width="1.5" PointX="24" PointY="1" />
+        <AssociationConnector Association="Database.FK_News_Id" />
+        <EntityTypeShape EntityType="Database.Page" Width="1.5" PointX="3" PointY="26.25" />
+        <AssociationConnector Association="Database.FK_Page_Document" />
+        <AssociationConnector Association="Database.FK_Page_Page" />
+        <AssociationConnector Association="Database.FK_PageMenu_Page" />
+        <EntityTypeShape EntityType="Database.Home_Setting" Width="1.5" PointX="3" PointY="47.125" />
+        <AssociationConnector Association="Database.FK_Home_Setting_Banner_Document" />
+        <AssociationConnector Association="Database.FK_Home_Setting_ExcelDocument" />
+        <AssociationConnector Association="Database.FK_Home_Setting_PDF_Document" />
+        <AssociationConnector Association="Database.FK_Home_Setting_WordDocument" />
+        <EntityTypeShape EntityType="Database.Canned_Email" Width="2.125" PointX="10.375" PointY="17" />
+        <AssociationConnector Association="Database.FK_CannedEmailDocument_CannedEmail" />
+        <EntityTypeShape EntityType="Database.Happiness_Meter" Width="1.5" PointX="13.375" PointY="17.75" />
+        <EntityTypeShape EntityType="Database.Poll" Width="1.5" PointX="23.375" PointY="12.125" />
+        <EntityTypeShape EntityType="Database.PollOption" Width="1.5" PointX="25.625" PointY="12" />
+        <AssociationConnector Association="Database.FK_PollOption_Poll" />
+        <EntityTypeShape EntityType="Database.User_Votes" Width="1.5" PointX="27.875" PointY="12.25" />
+        <AssociationConnector Association="Database.FK_User_Votes_Poll_Option" />
+        <EntityTypeShape EntityType="Database.Feed_Back" Width="1.5" PointX="15.375" PointY="17.75" />
+        <EntityTypeShape EntityType="Database.Social_Media" Width="1.5" PointX="3" PointY="94.75" />
+        <AssociationConnector Association="Database.FK_Social_Media_Document" />
+        <EntityTypeShape EntityType="Database.Applicant_Category" Width="1.5" PointX="24.375" PointY="6" />
+        <EntityTypeShape EntityType="Database.Applicant_Content_Category" Width="1.5" PointX="26.625" PointY="6.125" />
+        <EntityTypeShape EntityType="Database.Applicant_Content_Sub_Category" Width="1.5" PointX="28.875" PointY="6.25" />
+        <AssociationConnector Association="Database.FK_Applicant_Category_Applicant_Category" />
+        <AssociationConnector Association="Database.FK_Applicant_Content_Category_Applicant_Category" />
+        <AssociationConnector Association="Database.FK_Applicant_Content_Sub_Category_Applicant_Content_Category" />
+        <EntityTypeShape EntityType="Database.City" Width="1.5" PointX="23.375" PointY="21.25" />
+        <EntityTypeShape EntityType="Database.City_Description" Width="1.5" PointX="26.625" PointY="16.375" />
+        <AssociationConnector Association="Database.FK_City_Description_Applicant_Category_Id" />
+        <AssociationConnector Association="Database.FK_City_Description_City" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

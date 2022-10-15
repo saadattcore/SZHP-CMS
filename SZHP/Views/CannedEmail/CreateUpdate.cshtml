@@ -1,0 +1,183 @@
+﻿@model SZHPCMS.Models.CannedEmailViewModel
+
+@{
+    ViewBag.Title = "Create Update Email";
+}
+
+
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                <span>@ViewBag.Operation Email Template</span>
+            </h1>
+        </div>
+    </div>
+    <!-- /. ROW  -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("CreateUpdate", "CannedEmail", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
+
+                            <div class="form-group">
+
+                                @Html.LabelFor(model => model.NameEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(model => model.NameEn, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.NameEn)
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                @Html.LabelFor(model => model.NameAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(model => model.NameAr, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.NameAr)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.SubjectEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(model => model.SubjectEn, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.SubjectEn)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.SubjectAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(model => model.SubjectAr, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.SubjectAr)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EmailFrom, new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(model => model.EmailFrom, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.EmailFrom)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EmailTemplateEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.TextAreaFor(model => model.EmailTemplateEn, new { @class = "form-control", id = "editor_en" })
+                                    @Html.ValidationMessageFor(model => model.EmailTemplateEn)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EmailTemplateAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.TextAreaFor(model => model.EmailTemplateAr, new { @class = "form-control", id = "editor_ar" })
+                                    @Html.ValidationMessageFor(model => model.EmailTemplateAr)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-6">
+                                    <input type="file" multiple name="fileUpload" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="@ViewBag.Operation" class="btn btn-default" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+
+                                    @if (Model != null)
+                                    {
+
+                                        if (Model.Documents != null)
+                                        {
+                                            if (Model.Documents.Count > 0)
+                                            {
+                                                foreach (var item in Model.Documents)
+                                                {
+                                                    <div class="img-box" id="divImage_@item.DocumentId">
+
+                                                        @*<img src="/Images/Links/@Model.CannedEmailId/@item.FileName" alt="@item.FileName" width="140" height="140" id="@item.DocumentId" />*@
+
+                                                        <img src='@string.Format("/{0}/CannedEmails/{1}_{2}", SZHPCMS.Common.Constants.DOCUMENT_UPLOAD_FOLDER, @Model.CannedEmailId, item.FileName)' alt="@item.FileName" width="140" height="140" id="@item.DocumentId" />
+                                                        <br />
+                                                        <hr />
+                                                        <span>
+                                                            <a class="fa fa-trash-o" href='javascript:RemoveImage(@item.DocumentId)'>&nbsp; Delete Image</a>
+                                                        </span>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                    }
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <input type="hidden" value="@ViewBag.Operation" name="operation" />
+                        <input type="hidden" value="@ViewBag.ItemID" name="itemID" />
+                    }
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+
+    <script src="//cdn.ckeditor.com/4.5.7/full/ckeditor.js"></script>
+    <script type="text/javascript"> CKEDITOR.replace('editor_en'); </script>
+    <script type="text/javascript"> CKEDITOR.replace('editor_ar'); </script>
+
+    <script type="text/javascript">
+
+
+
+        var RemoveImage = function (imageID) {
+
+            var divImageID = 'divImage_' + imageID;
+
+            $.ajax({
+
+                url: '@Url.Action("RemoveDocument","Link")',
+                type: "POST",
+                data: JSON.stringify({ docID: imageID }),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+
+                    if (data.Deleted == true) {
+
+                        $('#' + divImageID).remove();
+
+                    }
+
+                },
+
+                error: function (data) {
+                    alert(data.statusText);
+                }
+
+
+            });
+
+        }
+
+    </script>
+
+
+}

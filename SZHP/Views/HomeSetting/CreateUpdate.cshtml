@@ -1,0 +1,180 @@
+﻿@model SZHPCMS.Models.HomeSettingViewModel
+@using SZHPCMS.Utilities
+
+@{
+    ViewBag.Title = "Home Page Settings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                Home Page Settings @*<small>ITJ CMS.</small>*@
+            </h1>
+            @if (TempData[SZHPCMS.Common.Constants.MESSAGE] != null)
+            {
+
+                <div class="success">
+                    @TempData[SZHPCMS.Common.Constants.MESSAGE];
+                </div>
+            }
+        </div>
+    </div>
+    <!-- /. ROW  -->
+    <div class="well">
+        @using (Html.BeginForm("CreateUpdate", "HomeSetting", FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @*if (ViewBag.Message != null)
+                {
+
+                    <div class="row" style="margin-top:6px;margin-bottom:0px">
+                        <div class="col-md-12">
+                            <span class="alert alert-success" style="display:block"><strong>@ViewBag.Message</strong></span>
+                        </div>
+                    </div>
+                    <hr style="margin-bottom:23px;margin-top:0px" />
+                }*@
+
+            @*<div class="row">
+                    <div class="col-md-4 col-md-offset-8 text-right">
+                        <a href="/HomeSetting/MobileApplication">&nbsp;Manage Mobile Applications</a>
+                    </div>
+                    <hr />
+
+                </div>*@
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.HiddenFor(x => x.HomeSettingId)
+                        <label class="control-label">@LocalizedString.T("lblFacebook")</label>
+                        @Html.TextBoxFor(x => x.Facebook, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Facebook)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">@LocalizedString.T("lblTwitter")   @*@(global::Resources.Resources.lblNameAr)*@</label>
+                        @Html.TextBoxFor(x => x.Twitter, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Twitter)
+                    </div>
+                </div>
+                <!-- /.panel -->
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">@LocalizedString.T("lblYoutube") @*@(global::Resources.Resources.lblCMSTitleEn)*@</label>
+                        @Html.TextBoxFor(x => x.Youtube, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Youtube)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">@LocalizedString.T("lblInstagram") @*@(global::Resources.Resources.lblCMSTitleAr)*@</label>
+                        @Html.TextBoxFor(x => x.Instagram, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Instagram)
+                    </div>
+                </div>
+                <!-- /.panel -->
+            </div>
+            <div class="row no-display">
+                <div class="col-md-6 uploadImg">
+                    <div class="form-group">
+                        <label class="control-label">@LocalizedString.T("lblMainBanner") </label>
+                        @Html.TextBoxFor(x => x.BannerDocument, new { type = "file", @class = "form-control", accept = "image/*", onchange = "ValidateExtension(this, 'jpg,png,gif')" })
+                    </div>
+                </div>
+
+                <div class="col-md-6 uploadImg">
+                    @if (!string.IsNullOrEmpty(Model.BannerDocumentName))
+                    {
+                        <div style="margin-top:25px">
+                            <img alt='@Model.BannerDocumentName' src='@string.Format("/{0}/HomeSettings/{1}_{2}", SZHPCMS.Common.Constants.DOCUMENT_UPLOAD_FOLDER, @Model.HomeSettingId.ToString(), @Model.BannerDocumentName)' width="50" height="50" />
+
+                        </div>
+                    }
+                </div>
+
+                <!-- /.panel -->
+            </div>
+
+    <div class="row no-display">
+        <div class="col-md-6 uploadImg">
+            <div class="form-group">
+                <label class="control-label">@LocalizedString.T("lblWordLogo") </label>
+                @Html.TextBoxFor(x => x.WordDocument, new { type = "file", @class = "form-control", accept = "image/*", onchange = "ValidateExtension(this, 'jpg,png,gif')" })
+            </div>
+        </div>
+
+        <div class="col-md-6 uploadImg">
+            @if (!string.IsNullOrEmpty(Model.WordDocumentName))
+            {
+                <div style="margin-top:25px">
+                    <img alt='@Model.WordDocumentName' src='@string.Format("/{0}/HomeSettings/{1}_{2}", SZHPCMS.Common.Constants.DOCUMENT_UPLOAD_FOLDER, @Model.HomeSettingId.ToString(), @Model.WordDocumentName)' width="50" height="50" />
+                </div>
+            }
+        </div>
+
+        <!-- /.panel -->
+    </div>
+
+    <div class="row no-display">
+        <div class="col-md-6 uploadImg">
+            <div class="form-group">
+                <label class="control-label">@LocalizedString.T("lblExcelLogo") </label>
+                @Html.TextBoxFor(x => x.ExcelDocument, new { type = "file", @class = "form-control", accept = "image/*", onchange = "ValidateExtension(this, 'jpg,png,gif')" })
+            </div>
+        </div>
+
+        <div class="col-md-6 uploadImg">
+            @if (!string.IsNullOrEmpty(Model.ExcelDocumentName))
+            {
+                <div style="margin-top:25px">
+
+                    <img alt='@Model.ExcelDocumentName' src='@string.Format("/{0}/HomeSettings/{1}_{2}", SZHPCMS.Common.Constants.DOCUMENT_UPLOAD_FOLDER, @Model.HomeSettingId.ToString(), @Model.ExcelDocumentName)' width="50" height="50" />
+
+                </div>
+            }
+        </div>
+
+        <!-- /.panel -->
+    </div>
+
+    <div class="row no-display">
+        <div class="col-md-6 uploadImg">
+            <div class="form-group">
+                <label class="control-label">@LocalizedString.T("lblPDFLogo") </label>
+                @Html.TextBoxFor(x => x.PDFDocument, new { type = "file", @class = "form-control", accept = "image/*", onchange = "ValidateExtension(this, 'jpg,png,gif')" })
+            </div>
+        </div>
+
+        <div class="col-md-6 uploadImg">
+            @if (!string.IsNullOrEmpty(Model.PDFDocumentName))
+            {
+                <div style="margin-top:25px">
+
+                    <img alt='@Model.PDFDocumentName' src='@string.Format("/{0}/HomeSettings/{1}_{2}", SZHPCMS.Common.Constants.DOCUMENT_UPLOAD_FOLDER, @Model.HomeSettingId.ToString(), @Model.PDFDocumentName)' width="50" height="50" />
+
+                </div>
+            }
+        </div>
+
+        <!-- /.panel -->
+    </div>
+
+
+            <div class="row">
+                <div class="col-md-3 col-xs-12 text-right margin-top-20 float-right">
+                    <input type="submit" value="Update" name="Update" id="Update" class="btn btn-primary btn-block" />
+                </div>
+            </div>
+
+        }
+
+    </div>
+</div>

@@ -1,0 +1,158 @@
+﻿@model SZHPCMS.Models.OpenDataViewModel
+
+@{
+    ViewBag.Title = "Create Update Open Data";
+}
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                @ViewBag.Operation Open Data
+            </h1>
+        </div>
+    </div>
+    <!-- /. ROW  -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.ActionLink("Back To List", "IndexOpenData")
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("CreateUpdateOpenData", "Project", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TitleEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.TitleEn, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TitleEn)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TitleAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.TitleAr, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TitleAr)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PublicationDate, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.PublicationDate, "{0:MM/dd/yyyy}", new { @class = "form-control", @id = "txtDatePicker" })
+                                    @Html.ValidationMessageFor(model => model.PublicationDate)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ExcelDoc, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.ExcelDoc, new { @class = "form-control", @type = "file", onchange = "ValidateExtension(this, 'xls,xlsx')" })
+                                    @Html.ValidationMessageFor(model => model.ExcelDoc)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PDFDoc, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.PDFDoc, new { @class = "form-control", @type = "file", onchange = "ValidateExtension(this, 'pdf')" })
+                                    @Html.ValidationMessageFor(model => model.PDFDoc)
+                                </div>
+                            </div>
+
+                            @*<div class="form-group">
+
+                                    <div class="col-md-offset-2 col-md-4">
+                                        <input type="file" class="form-control" name="upImage" />
+                                    </div>
+                                </div>*@
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="@ViewBag.Operation" class="btn btn-default" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-md-offset-2 col-md-2">
+                                    @if (Model != null)
+                                    {
+                                        if (!string.IsNullOrEmpty(Model.ExcelDocName))
+                                        {
+                                            <img src="~/Content/images/excel-logo.jpg" width="150" height="150" />
+                                            <br />
+                                            @*<a href="/Images/OpenData/@Model.OpenDataId/@Model.ExcelDocName" download>@Model.ExcelDocName</a>*@
+
+                                            <a href='@string.Format("/{0}/OpenData/{1}_{2}", SZHPCMS.Common.Constants.DOCUMENT_UPLOAD_FOLDER, @Model.OpenDataId, @Model.ExcelDocName)' download>@Model.ExcelDocName</a>
+
+                                        }
+                                    }
+
+
+                                </div>
+                                <div class="col-md-offset-1 col-md-4">
+                                    @if (Model != null)
+                                    {
+                                        if (!string.IsNullOrEmpty(Model.PDFDocName))
+                                        {
+                                            <img src="~/Content/images/pdf-logo-transparent-150x150.png" width="150" height="150" />
+                                            <br />
+                                            @*<a href="/Images/OpenData/@Model.OpenDataId/@Model.PDFDocName" download>@Model.PDFDocName</a>*@
+
+                                            <a href='@string.Format("/{0}/OpenData/{1}_{2}", SZHPCMS.Common.Constants.DOCUMENT_UPLOAD_FOLDER, @Model.OpenDataId, @Model.PDFDocName)' download>@Model.PDFDocName</a>
+                                        }
+                                    }
+
+                                </div>
+
+                            </div>
+
+                            @*<div class="form-group">
+
+                                    <div class="col-md-offset-2 col-md-4">
+                                        @if (Model != null)
+                                        {
+                                            if (!string.IsNullOrEmpty(Model.PDFDocName))
+                                            {
+                                                <img src="/Images/OpenData/@Model.OpenDataId/@Model.PDFDocName" alt="@Model.PDFDocName" width="150" height="150" />
+                                            }
+                                        }
+
+                                    </div>
+                                </div>*@
+
+                        </div>
+
+                        <input type="hidden" name="itemID" value="@ViewBag.ItemID" />
+                        <input type="hidden" name="operation" value="@ViewBag.Operation" />
+
+                    }
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <link href="~/Content/assets/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <script src="~/Content/assets/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript">
+
+
+
+        $(document).ready(function () {
+
+            $("#txtDatePicker").datepicker({ autoclose: true });
+
+
+        });
+
+    </script>
+}

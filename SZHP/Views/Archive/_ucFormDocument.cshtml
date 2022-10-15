@@ -1,0 +1,76 @@
+﻿@model SZHPCMS.Models.FormDocumentViewModel
+
+<div class="panel-body">
+
+    <form method="post" action="/Archive/AddFormDocument" enctype="multipart/form-data" id="frmPartial">
+
+        <div class="form-horizontal">
+
+            <div class="form-group">
+
+                @Html.HiddenFor(x => x.FormDocumentId)
+
+                @Html.LabelFor(model => model.NameEn, new { @class = "control-label col-md-2" })
+                <div class="col-md-8">
+                    @Html.TextBoxFor(model => model.NameEn, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.NameEn)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NameAr, new { @class = "control-label col-md-2" })
+                <div class="col-md-8">
+                    @Html.TextBoxFor(model => model.NameAr, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.NameAr)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-8">
+                    @*<input type="file" multiple name="fileUpload" class="form-control" />*@
+                    @Html.TextBoxFor(model => model.File, new { @type = "file", @class = "form-control", onchange = "ValidateExtension(this, 'pdf,xls,xlsx')" })
+                </div>
+            </div>
+
+            @{
+                string op = ViewData["Operation"] as string;
+                long itemID = 0;
+
+
+                if (ViewData["ItemID"] != null)
+                {
+                    itemID = Convert.ToInt64(ViewData["ItemID"]);
+                }
+
+                string formdocOp = ViewData["OperationFormDoc"] as string;
+
+                formdocOp = string.IsNullOrEmpty(formdocOp) ? "Create" : formdocOp;
+
+            }
+
+            <input type="hidden" value="@op" name="operation" />
+            <input type="hidden" value="@itemID" name="itemID" />
+            <input type="hidden" value="@formdocOp" name="operationDocForm" />
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-primary" onclick="AddValidator()" />
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+    <script type="text/javascript">
+
+        AddValidator = function () {
+
+            $("#frmPartial").removeData("validator");
+            $("#frmPartial").removeData("unobtrusiveValidation");
+            $.validator.unobtrusive.parse($('#frmPartial'));
+
+        }
+
+    </script>
+
+</div>

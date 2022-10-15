@@ -1,0 +1,226 @@
+﻿@model SZHPCMS.Models.NewsViewModel
+
+@{
+    ViewBag.Title = "Create Update News";
+}
+
+
+@*<div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">
+                    Create News
+                </h1>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                    <div class="panel-body">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+                                @Html.ValidationSummary(true)
+                                @Html.HiddenFor(model => model.Id)
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.Title, new { @class = "form-control" })
+                                        <div class="col-md-4">
+                                            @Html.ValidationMessageFor(model => model.Title)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.Description, new { @class = "form-control" })
+                                        <div class="col-md-4">
+                                            @Html.ValidationMessageFor(model => model.Description)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-4">
+                                        <input type="submit" value="Save" class="btn btn-default" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <!--End Advanced Tables -->
+            </div>
+        </div>
+    </div>*@
+
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                @if (ViewBag.Operation != null)
+                {
+                    <span>@ViewBag.Operation&nbsp;News</span>
+                }
+            </h1>
+        </div>
+    </div>
+    <!-- /. ROW  -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+                <div class="panel-body">
+                    @*@using (Html.BeginForm("CreateUpdate", "News", FormMethod.Post, new { enctype = "multipart/form-data" }))*@
+                    @*{*@
+
+                    <form method="post" action="/News/CreateUpdate" enctype="multipart/form-data">
+
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+
+                        <div class="form-horizontal">
+
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.CategoryID, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.DropDownListFor(model => model.CategoryID, Model.Categories, "-- Select Category --")
+                                        @Html.ValidationMessageFor(model => model.CategoryID)
+                                    </div>
+                                </div>*@
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TitleEnglish, new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(model => model.TitleEnglish, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TitleEnglish)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TitleArabic, new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(model => model.TitleArabic, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TitleArabic)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DescriptionEnglish, new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.TextAreaFor(model => model.DescriptionEnglish, new { @class = "form-control", @id = "editor_en" })
+                                    @Html.ValidationMessageFor(model => model.DescriptionEnglish)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DescriptionArabic, new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.TextAreaFor(model => model.DescriptionArabic, new { @class = "form-control", @id = "editor_ar" })
+                                    @Html.ValidationMessageFor(model => model.DescriptionArabic)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ImageFile, new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(model => model.ImageFile, new { @class = "form-control", type = "file", multiple = "multiple", onchange = "ValidateExtension(this, 'jpg,png,gif')" })
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-6">
+                                    <input type="submit" value="@ViewBag.Operation" class="btn btn-default" onchange="ValidateExtension(this, 'jpg,png,gif')" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+
+                                @if (Model != null)
+                                {
+                                    if (Model.Documents != null)
+                                    {
+                                        if (Model.Documents.Count > 0)
+                                        {
+                                            foreach (var item in Model.Documents)
+                                            {
+                                                <div class="img-box" id="divImage_@item.DocumentId">
+
+                                                    @*<img src="/Images/News/@Model.Id/@item.FileName" alt="@item.FileName" width="140" height="140" id="@item.DocumentId" />*@
+
+                                                    <img src='@string.Format("/{0}/News/{1}_{2}", SZHPCMS.Common.Constants.DOCUMENT_UPLOAD_FOLDER, @Model.Id, @item.FileName)'  alt="@item.FileName" id="@item.DocumentId" width="140" height="140" />
+
+                                                    <br />
+                                                    <hr />
+                                                    <span>
+                                                        <a class="fa fa-trash-o" href='javascript:RemoveImage(@item.DocumentId,@Model.Id)'>&nbsp; Delete Image</a>
+                                                    </span>
+                                                </div>
+                                            }
+                                        }
+                                    }
+                                }
+                            </div>
+
+                        </div>
+
+                        <input type="hidden" name="itemID" value="@ViewBag.ItemID" />
+                        <input type="hidden" name="operation" value="@ViewBag.Operation" />
+                    </form>
+                    @*}*@
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+    <script type="text/javascript"> CKEDITOR.replace('editor_en'); </script>
+    <script type="text/javascript"> CKEDITOR.replace('editor_ar'); </script>
+
+    <script type="text/javascript">
+
+        var RemoveImage = function (imageID) {
+
+            var divImageID = 'divImage_' + imageID;
+
+            $.ajax({
+
+                url: '@Url.Action("RemoveDocument","News")',
+                type: "POST",
+                data: JSON.stringify({ docID: imageID }),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+
+                    if (data.Deleted == true) {
+
+                        $('#' + divImageID).remove();
+
+                    }
+
+                }
+
+
+            });
+
+        }
+
+    </script>
+}

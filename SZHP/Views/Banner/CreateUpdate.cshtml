@@ -1,0 +1,152 @@
+﻿@model SZHPCMS.Models.BannerViewModel
+
+@{
+    ViewBag.Title = "Create Update Banner";
+}
+
+
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                <span>@ViewBag.Operation Banner</span>
+            </h1>
+        </div>
+    </div>
+    <!-- /. ROW  -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("CreateUpdate", "Banner", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
+
+                            <div class="form-group">
+                                @*@Html.HiddenFor(model => model.BannerId)*@
+
+                                @Html.LabelFor(model => model.TitleAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.TitleAr, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TitleAr)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TitleEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.TitleEn, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TitleEn)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-4">
+                                    <input type="file" multiple name="fileUpload" class="form-control" onchange="ValidateExtension(this, 'jpg,png,gif')" />
+
+                                </div>
+                                @*<div class="col-md-6 padding-top-10">
+                                        <strong>
+                                            <span id="errExt" class="text text-danger no-display">
+                                                <i class="fa fa-exclamation-triangle"></i>
+                                                <label></label>
+
+                                            </span>
+                                        </strong>
+                                    </div>*@
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="@ViewBag.Operation" class="btn btn-default" onclick="" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+
+                                    @if (Model != null)
+                                    {
+
+                                        if (Model.Documents != null)
+                                        {
+                                            if (Model.Documents.Count > 0)
+                                            {
+                                                foreach (var item in Model.Documents)
+                                                {
+                                                    <div class="img-box" id="divImage_@item.DocumentId">
+                                                                                                              
+
+                                                        <img src='@string.Format("/{0}/Banners/{1}_{2}", SZHPCMS.Common.Constants.DOCUMENT_UPLOAD_FOLDER, @Model.BannerId, item.FileName)' alt="@item.FileName" width="140" height="140" id="@item.DocumentId" />
+
+                                                        <br />
+                                                        <hr />
+                                                        <span>
+                                                            <a class="fa fa-trash-o" href='javascript:RemoveImage(@item.DocumentId)'>&nbsp; Delete Image</a>
+                                                        </span>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                    }
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <input type="hidden" value="@ViewBag.Operation" name="operation" />
+                        <input type="hidden" value="@ViewBag.ItemID" name="itemID" />
+                    }
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+
+    <script type="text/javascript">
+
+        var RemoveImage = function (imageID) {
+
+            var divImageID = 'divImage_' + imageID;
+
+            $.ajax({
+
+                url: '@Url.Action("RemoveDocument","Banner")',
+                type: "POST",
+                data: JSON.stringify({ docID: imageID }),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+
+                    if (data.Deleted == true) {
+
+                        $('#' + divImageID).remove();
+
+                    }
+
+                },
+
+                error: function (data) {
+                    alert(data.statusText);
+                }
+
+
+            });
+
+        }
+
+    </script>
+
+
+}

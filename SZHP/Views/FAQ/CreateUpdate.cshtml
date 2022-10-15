@@ -1,0 +1,97 @@
+﻿@model SZHPCMS.Models.FAQViewModel
+
+@{
+    ViewBag.Title = "Create Update FAQ";
+}
+
+
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                @if (ViewBag.Operation != null)
+                {
+                    <span>@ViewBag.Operation&nbsp;FAQ</span>
+                }
+            </h1>
+        </div>
+    </div>
+    <!-- /. ROW  -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("CreateUpdate", "FAQ", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CategoryID, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.DropDownListFor(model => model.CategoryID, Model.Categories, "-- Select Category --")
+                                    @*@Html.ValidationMessageFor(model => model.CategoryID)*@
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.QuestionEnglish, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(model => model.QuestionEnglish, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.QuestionEnglish)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.QuestionArabic, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(model => model.QuestionArabic, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.QuestionArabic)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.AnswerEnglish, new { @class = "control-label col-md-2"  })
+                                <div class="col-md-8">
+                                    @Html.TextAreaFor(model => model.AnswerEnglish, new { @class = "form-control", @id = "editor_en" })
+                                    @Html.ValidationMessageFor(model => model.AnswerEnglish)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.AnswerArabic, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextAreaFor(model => model.AnswerArabic, new { @class = "form-control", @id = "editor_ar" })
+                                    @Html.ValidationMessageFor(model => model.AnswerArabic)
+                                </div>
+                            </div>                       
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="@ViewBag.Operation" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="itemID" value="@ViewBag.ItemID" />
+                        <input type="hidden" name="operation" value="@ViewBag.Operation" />
+                    }
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts
+    {
+
+    <script src="//cdn.ckeditor.com/4.5.7/full/ckeditor.js"></script>
+    <script type="text/javascript"> CKEDITOR.replace('editor_en'); </script>
+    <script type="text/javascript"> CKEDITOR.replace('editor_ar'); </script>
+}

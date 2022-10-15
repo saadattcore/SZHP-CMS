@@ -1,0 +1,133 @@
+﻿@model SZHPCMS.Models.SettingViewModel
+@using SZHPCMS.Utilities;
+@{
+    ViewBag.Title = "Website Settings";
+}
+
+
+
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                Site Settings @*<small>ITJ CMS.</small>*@
+            </h1>
+            @if (ViewBag.Updated != null)
+            {
+
+                <div class="success">
+                    @*@SZHPCMS.Utilities.LocalizedString.T("RecordUpdatedSucessfully")*@
+                    Setting updated sucessfully
+                </div>
+            }
+        </div>
+    </div>
+    <!-- /. ROW  -->
+    <div class="well">
+        @using (Html.BeginForm("CreateUpdate", "Setting", FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }))
+        {
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">@LocalizedString.T("lblNameEn")</label>
+                        @Html.TextBoxFor(x => x.ClientNameEnglish, new { @class = "form-control" })
+                        @*@Html.HiddenFor(x => x.Id)*@
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">@LocalizedString.T("lblNameAr")   @*@(global::Resources.Resources.lblNameAr)*@</label>
+                        @Html.TextBoxFor(x => x.ClientNameArabic, new { @class = "form-control" })
+                    </div>
+                </div>
+                <!-- /.panel -->
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">@LocalizedString.T("lblCMSTitleEn") @*@(global::Resources.Resources.lblCMSTitleEn)*@</label>
+                        @Html.TextBoxFor(x => x.CMSTitleEnglish, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">@LocalizedString.T("lblCMSTitleAr") @*@(global::Resources.Resources.lblCMSTitleAr)*@</label>
+                        @Html.TextBoxFor(x => x.CMSTitleArabic, new { @class = "form-control" })
+                    </div>
+                </div>
+                <!-- /.panel -->
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">@LocalizedString.T("lblEmail") @*@(global::Resources.Resources.lblEmail)*@</label>
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Email)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">@LocalizedString.T("lblWebsite")   @*@(global::Resources.Resources.lblWebsite)*@</label>
+                        @Html.TextBoxFor(x => x.Website, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Website)
+                    </div>
+                </div>
+                <!-- /.panel -->
+            </div>
+
+            @*<div class="row">*@
+            @*<div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">@LocalizedString.T("lblFacebook") </label>
+                        @Html.TextBoxFor(x => x.FaceBook, new { @class = "form-control" })
+                    </div>
+                </div>*@
+            @*<div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">@LocalizedString.T("lblTwitter") ></label>
+                        @Html.TextBoxFor(x => x.Twitter, new { @class = "form-control" })
+                    </div>
+                </div>*@
+                <!-- /.panel -->
+            @*</div>*@
+
+            <div class="row">
+                <div class="col-md-6 uploadImg">
+                    <div class="form-group">
+                        <label class="control-label">@LocalizedString.T("lblLogo") @*@(global::Resources.Resources.lblLogo)*@</label>
+                        <input type="file" name="Logo" id="Logo" onchange="ValidateExtension(this, 'jpg,png,gif')" class="form-control" />
+                    </div>
+
+                    @if (Model != null)
+                    {
+                        if (!string.IsNullOrEmpty(Model.DocumentName))
+                        {
+                            @Html.HiddenFor(x => x.DocumentName)
+                            <div style="margin-top:25px">
+                                <img src='@string.Format("/Documents/Settings/{0}_{1}",@Model.Id.ToString() , @Model.DocumentName ) ' alt='@Model.DocumentName' width="267" height="109" />
+
+                            </div>
+                        }
+                    }
+
+
+                </div>
+
+
+
+
+                <!-- /.panel -->
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-3 col-xs-12 text-right margin-top-20 float-right">
+                    <input type="submit" value="Update" name="Update" id="Update" class="btn btn-primary btn-block" />
+                </div>
+            </div>
+
+        }
+
+    </div>
+</div>

@@ -1,0 +1,146 @@
+﻿@model SZHPCMS.Models.TrainingPlanViewModel
+
+@{
+    ViewBag.Title = "Create Update Training Plan";
+}
+
+@section styles
+{
+
+
+    <link href="~/Content/assets/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+
+}
+
+
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                Create Training Plan
+            </h1>
+        </div>
+    </div>
+    <!-- /. ROW  -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                   @Html.ActionLink("Back To Listing","Index")
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TrainingProgramId, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.DropDownListFor(x => x.TrainingProgramId, Model.TrainingPrograms, "-- Select Traning Program --")
+                                    @Html.ValidationMessageFor(model => model.TrainingProgramId)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.HiddenFor(model => model.TrainingPlanId)
+                                @Html.LabelFor(model => model.LocationAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.LocationAr, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.LocationAr)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.LocationEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.LocationEn, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.LocationEn)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.AudienceAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.AudienceAr, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.AudienceAr)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.AudienceEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.AudienceEn, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.AudienceEn)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NotesAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextAreaFor(model => model.NotesAr, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.NotesAr)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NotesEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextAreaFor(model => model.NotesEn, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.NotesEn)
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ThemeAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.ThemeAr, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ThemeAr)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ThemeEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.ThemeEn, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ThemeEn)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Date, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.Date, new { @class = "form-control", @id = "txtDate" })
+                                    @Html.ValidationMessageFor(model => model.Date)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="@ViewBag.Operation" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Content/assets/js/bootstrap-datepicker.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#txtDate').datepicker();
+        });
+
+    </script>
+
+}

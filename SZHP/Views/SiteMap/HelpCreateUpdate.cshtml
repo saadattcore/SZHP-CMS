@@ -1,0 +1,91 @@
+﻿@model SZHPCMS.Models.HelpViewModel
+
+@{
+    ViewBag.Title = "Create Update Help";
+}
+
+
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                <span>@ViewBag.Operation Help</span>
+            </h1>
+        </div>
+    </div>
+    <!-- /. ROW  -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.ActionLink("Back To Listing", "HelpIndex")
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("HelpCreateUpdate", "SiteMap", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        if (@ViewBag.ErrorMessage != null)
+                        {
+                            <div class="form-group">
+                                <span class="alert alert-danger" style="display:block">@ViewBag.ErrorMessage</span>
+                            </div>
+                        }
+
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TitleEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(model => model.TitleEn, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TitleEn)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TitleAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(model => model.TitleAr, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TitleAr)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DescriptionEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextAreaFor(model => model.DescriptionEn, new { @class = "form-control", @id = "editor_en" })
+                                    @Html.ValidationMessageFor(model => model.DescriptionEn)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DescriptionAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextAreaFor(model => model.DescriptionAr, new { @class = "form-control", @id = "editor_ar" })
+                                    @Html.ValidationMessageFor(model => model.DescriptionAr)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-2">
+                                    <input type="submit" value="@ViewBag.Operation" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" value="@ViewBag.ItemID" id="hfItemID" name="itemID" />
+                        <input type="hidden" value="@ViewBag.Operation" id="hfOperation" name="operation" />
+                    }
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+</div>
+
+@section scripts
+    {
+
+    <script src="//cdn.ckeditor.com/4.5.7/full/ckeditor.js"></script>
+    <script type="text/javascript"> CKEDITOR.replace('editor_en'); </script>
+    <script type="text/javascript"> CKEDITOR.replace('editor_ar'); </script>
+}

@@ -1,0 +1,121 @@
+﻿@model SZHPCMS.Models.EServiceViewModel
+
+@{
+    ViewBag.Title = "Create Update E-Service";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                @if (ViewBag.Operation != null)
+                {
+                    <span>@ViewBag.Operation&nbsp;E-Service</span>
+                }
+            </h1>
+        </div>
+    </div>
+    <!-- /. ROW  -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.ActionLink("Back to List", "Index")
+                    <span class="float-right">@Html.ActionLink("Manage E-Service Category","IndexServiceCategory")</span>
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("CreateUpdate", "EServices", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        if (@ViewBag.ErrorMessage != null)
+                        {
+                            <div class="form-group">
+                                <span class="alert alert-danger" style="display:block">@ViewBag.ErrorMessage</span>
+                            </div>
+                        }
+
+                        <div class="form-horizontal">
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TitleEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.DropDownListFor(model => model.CategoryID, Model.CategoryDropDown, "-- Select Category --")
+                                    @Html.ValidationMessageFor(model => model.CategoryID)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.HiddenFor(x => x.EServiceID)
+                                @Html.LabelFor(model => model.TitleEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(model => model.TitleEn, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TitleEn)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TitleAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(model => model.TitleAr, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TitleAr)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DescriptionEn, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextAreaFor(model => model.DescriptionEn, new { @class = "form-control", @id = "editor_en" })
+                                    @Html.ValidationMessageFor(model => model.DescriptionEn)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DescriptionAr, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextAreaFor(model => model.DescriptionAr, new { @class = "form-control", @id = "editor_ar" })
+                                    @Html.ValidationMessageFor(model => model.DescriptionAr)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.VideoURL, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(x => x.VideoURL, new { @class = "form-control" })
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="@ViewBag.Operation" class="btn btn-default" />
+                                </div>
+                            </div>
+
+                            @if (!string.IsNullOrEmpty(Model.VideoURL))
+                            {
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <iframe width="420" height="315" src="@Model.VideoURL"></iframe>
+                                    </div>
+                                </div>
+                            }
+
+
+                        </div>
+
+                        <input type="hidden" name="itemID" value="@ViewBag.MenuIDToUpdate" />
+                        <input type="hidden" name="operation" value="@ViewBag.Operation" />
+                    }
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+
+    <script src="//cdn.ckeditor.com/4.5.7/full/ckeditor.js"></script>
+    <script type="text/javascript"> CKEDITOR.replace('editor_en'); </script>
+    <script type="text/javascript"> CKEDITOR.replace('editor_ar'); </script>
+}

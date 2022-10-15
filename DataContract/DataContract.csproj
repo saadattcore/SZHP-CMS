@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3A4FB7FA-2FE9-4C16-A3DE-29A1F6C05E67}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataContract</RootNamespace>
+    <AssemblyName>DataContract</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Implementation\ApplicantCategoryModel.cs" />
+    <Compile Include="Implementation\ApplicantContentCategoryModel.cs" />
+    <Compile Include="Implementation\BannerModel.cs" />
+    <Compile Include="Implementation\CannedEmailModel.cs" />
+    <Compile Include="Implementation\CareerIndustryModel.cs" />
+    <Compile Include="Implementation\CareerJobModel.cs" />
+    <Compile Include="Implementation\CareerTypeModel.cs" />
+    <Compile Include="Implementation\CityModel.cs" />
+    <Compile Include="Implementation\CommonModel.cs" />
+    <Compile Include="Implementation\ContactChairmanModel.cs" />
+    <Compile Include="Implementation\ContactUsModel.cs" />
+    <Compile Include="Implementation\CountryModel.cs" />
+    <Compile Include="Implementation\DocumentModel.cs" />
+    <Compile Include="Implementation\EServiceModel.cs" />
+    <Compile Include="Implementation\EventModel.cs" />
+    <Compile Include="Implementation\EventTypeModel.cs" />
+    <Compile Include="Implementation\FAQModel.cs" />
+    <Compile Include="Implementation\Feed_BackModel.cs" />
+    <Compile Include="Implementation\FileTypeModel.cs" />
+    <Compile Include="Implementation\FormDocumentModel.cs" />
+    <Compile Include="Implementation\FormModel.cs" />
+    <Compile Include="Implementation\GalleryModel.cs" />
+    <Compile Include="Implementation\HomeSettingModel.cs" />
+    <Compile Include="Implementation\JobApplicantModel.cs" />
+    <Compile Include="Implementation\LinkModel.cs" />
+    <Compile Include="Implementation\MagzineModel.cs" />
+    <Compile Include="Implementation\MenuModel.cs" />
+    <Compile Include="Implementation\MobileAppModel.cs" />
+    <Compile Include="Implementation\NewsModel.cs" />
+    <Compile Include="Implementation\OpenDataModel.cs" />
+    <Compile Include="Implementation\PageModel.cs" />
+    <Compile Include="Implementation\PartnerServiceModel.cs" />
+    <Compile Include="Implementation\ProjectModel.cs" />
+    <Compile Include="Implementation\ResearchStudyCategoryModel.cs" />
+    <Compile Include="Implementation\ResearchStudyModel.cs" />
+    <Compile Include="Implementation\RowStatusModel.cs" />
+    <Compile Include="Implementation\RulesAndRegulationModel.cs" />
+    <Compile Include="Implementation\SettingModel.cs" />
+    <Compile Include="Implementation\SiteMapModel.cs" />
+    <Compile Include="Implementation\SocialMediaModel.cs" />
+    <Compile Include="Implementation\SubscriberModel.cs" />
+    <Compile Include="Implementation\TechnicalSupportModel.cs" />
+    <Compile Include="Implementation\TrainingPlanModel.cs" />
+    <Compile Include="Implementation\TraningProgramModel.cs" />
+    <Compile Include="Interfaces\IBanner.cs" />
+    <Compile Include="Interfaces\ICareer.cs" />
+    <Compile Include="Interfaces\ICommonHandler.cs" />
+    <Compile Include="Interfaces\IContact.cs" />
+    <Compile Include="Interfaces\IDocument.cs" />
+    <Compile Include="Interfaces\IEvent.cs" />
+    <Compile Include="Interfaces\IFAQ.cs" />
+    <Compile Include="Interfaces\IFileType.cs" />
+    <Compile Include="Interfaces\IGallery.cs" />
+    <Compile Include="Interfaces\ILink.cs" />
+    <Compile Include="Interfaces\IMenu.cs" />
+    <Compile Include="Interfaces\INews.cs" />
+    <Compile Include="Interfaces\INewsLetter.cs" />
+    <Compile Include="Interfaces\IPage.cs" />
+    <Compile Include="Interfaces\IRowStatus.cs" />
+    <Compile Include="Interfaces\ISetting.cs" />
+    <Compile Include="Interfaces\ISurvey.cs" />
+    <Compile Include="Interfaces\ITrainingPlan.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

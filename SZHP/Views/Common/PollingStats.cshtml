@@ -1,0 +1,106 @@
+﻿@model IEnumerable<SZHPCMS.Models.VoteStatsViewModel>
+
+@{
+    ViewBag.Title = "Polls Stats";
+}
+
+@section Header{
+    <link href="~/Content/assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+}
+
+
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12" id="dvHeader">
+            <h1 class="page-header">
+               Polling Stats
+                @if (@Model.Count() > 0)
+                {
+                    <span style="font-size:28px">@String.Concat(" - ", Model.FirstOrDefault().Poll)</span> @*<small>ITJ CMS</small>*@
+                }
+                 @*<small>ITJ CMS</small>*@
+            </h1>
+            @*<div class="error">Error</div>*@
+            @if (TempData[SZHPCMS.Common.Constants.MESSAGE] != null)
+            {
+                <div class="success">@TempData[SZHPCMS.Common.Constants.MESSAGE]</div>
+            }
+        </div>
+    </div>
+    <!-- /. ROW  -->
+
+    <div class="row">
+        <div class="col-md-12">
+
+            @using (Html.BeginForm("PerformActionPoll", "Common"))
+            {
+                @Html.AntiForgeryToken()
+
+
+                  <!-- Advanced Tables -->
+                <div class="panel panel-default">
+
+                   
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover" id="tblData">
+                                <thead>
+                                    <tr>
+                                       
+                                        <th style="text-align:center">@Html.DisplayNameFor(model => model.PollOptionEn)</th>
+                                        <th style="text-align:center">@Html.DisplayNameFor(model => model.Count)</th>
+                                        <th style="text-align:center">@Html.DisplayNameFor(model => model.Percent)</th>
+                                        @*<th class="text-center">@Html.DisplayNameFor(model => model.RowStatus)</th>
+                                        <th class="text-center" style="width:12%">Actions</th>*@
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        if(Model.Count()>0)
+                                        { 
+                                        <tr>
+                                            @*<td><input type="checkbox" name="chkBoxItem" value="@item.Poll_Id" /></td>*@
+                                            <td style="text-align:center">
+                                                @Html.DisplayFor(modelItem => item.PollOptionEn)
+                                            </td>                                          
+                                            <td style="text-align:center">@Html.DisplayFor(model => item.Count)</td>
+                                            <td style="text-align:center">
+                                                @Html.DisplayFor(modelItem => item.Percent)%
+                                            </td>
+                                            <td class="text-center" style="display:none">
+                                                <a onclick="UpdateMenu(this, '/Common/CreateUpdatePoll')" class="btn btn-primary" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil-square-o"></i></a>
+                                                <a class="btn btn-danger" data-toggle="tooltip" data-original-title="Delete" onclick="DeleteMenu(this, '/Common/DeletePoll')"><i class="fa fa-trash-o"></i></a>
+                                                <a class="btn btn-success" data-toggle="tooltip" data-original-title="Delete" onclick="UpdateMenu(this, '/Common/CreateUpdatePoll')"><i class="fa fa-book"></i></a>
+                                            </td>
+                                        </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>     
+                        
+                        @if (Model.Count() > 0)
+                        {
+                            <br />
+                            <span style="font-weight:bold">Total Count: @Model.Sum(x => x.Count)</span>
+                        }
+
+                     
+                                      
+                    </div>
+                </div>
+            <!--End Advanced Tables -->
+            }
+
+
+
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    @Scripts.Render("~/Content/CMSListing");
+}

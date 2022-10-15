@@ -1,0 +1,154 @@
+﻿@model SZHPCMS.Models.SocialMediaViewModel
+
+@{
+    ViewBag.Title = "Create Update Social Media";
+}
+
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                @if (ViewBag.Operation != null)
+                {
+                    <span>@ViewBag.Operation&nbsp;Social Media</span>
+                }
+            </h1>
+        </div>
+    </div>
+    <!-- /. ROW  -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+                <div class="panel-body">
+
+                    <form method="post" action="/SocialMedia/CreateUpdate" enctype="multipart/form-data">
+
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+
+                        <div class="form-horizontal">
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Title_En, new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(model => model.Title_En, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Title_En)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Title_Ar, new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(model => model.Title_Ar, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Title_Ar)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Tool_Tip_En, new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(model => model.Tool_Tip_En, new { @class = "form-control", @id = "editor_en" })
+                                    @Html.ValidationMessageFor(model => model.Tool_Tip_En)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Tool_Tip_Ar, new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(model => model.Tool_Tip_Ar, new { @class = "form-control", @id = "editor_ar" })
+                                    @Html.ValidationMessageFor(model => model.Tool_Tip_Ar)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Url, new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(model => model.Url, new { @class = "form-control", @id = "editor_ar" })
+                                    @Html.ValidationMessageFor(model => model.Url)
+                                </div>
+                            </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ImageFile, new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.ImageFile, new { @class = "form-control", type = "file", multiple = "multiple", onchange = "ValidateExtension(this, 'jpg,png,gif')" })
+                                @Html.ValidationMessageFor(model => model.ImageFile   )
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-6">
+                                <input type="submit" value="@ViewBag.Operation" class="btn btn-default" onchange="ValidateExtension(this, 'jpg,png,gif')" />
+                            </div>
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+
+                        @if (Model != null)
+                        {
+                            if (Model.Document != null)
+                            {
+                                <div class="img-box" id="divImage_@Model.Document.DocumentId">
+
+                                    @*<img src="/Images/News/@Model.Id/@item.FileName" alt="@item.FileName" width="140" height="140" id="@item.DocumentId" />*@
+
+                                    <img src='@string.Format("/{0}/SocialMedia/{1}_{2}", SZHPCMS.Common.Constants.DOCUMENT_UPLOAD_FOLDER, @Model.Social_Media_Id, @Model.Document.FileName)' alt="@Model.Document.FileName" id="@Model.Document.DocumentId" width="140" height="140" />
+
+                                    <br />
+                                    <hr />
+                                    <span>
+                                        <a class="fa fa-trash-o" href='javascript:RemoveImage(@Model.Document.DocumentId,"@Model.Document.FileName",@Model.Social_Media_Id)'>&nbsp; Delete Image</a>
+                                    </span>
+                                </div>
+                            }
+                        }
+                    </div>
+
+                </div>
+
+                <input type="hidden" name="itemID" value="@ViewBag.ItemID" />
+                <input type="hidden" name="operation" value="@ViewBag.Operation" />
+                </form>
+                @*}*@
+            </div>
+        </div>
+        <!--End Advanced Tables -->
+    </div>
+</div>
+</div>
+@section scripts
+{
+
+
+    <script type="text/javascript">
+
+        var RemoveImage = function (imageID,imageName,itemID) {
+
+            var divImageID = 'divImage_' + imageID;
+
+            $.ajax({
+
+                url: '@Url.Action("RemoveDocument","SocialMedia")',
+                type: "POST",
+                data: JSON.stringify({ docID: imageID , docName:imageName,itemID:itemID }),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+
+                    if (data.Deleted == true) {
+
+                        $('#' + divImageID).remove();
+
+                    }
+
+                }
+
+
+            });
+
+        }
+
+    </script>
+}

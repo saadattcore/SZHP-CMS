@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/StyleEnglish")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/customcss")
+    @Scripts.Render("~/bundles/script")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/CMSCore")
+    @Scripts.Render("~/bundles/jqueryval")
+    @RenderSection("styles", required: false)
+    @RenderSection("Header", required: false)
+    @*@Scripts.Render("~/bundles/customscript")*@
+    <link href="~/Content/assets/css/custom-styles.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/responsive.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <script src="~/Content/assets/js/cms-detail.js"></script>
+    <script src="~/Content/assets/js/cms-listing.js"></script>
+
+
+    <link href='@SZHPCMS.Utilities.Utility.GetCSS()' rel="stylesheet" />
+
+    <style>
+
+        .nav > li > a > img {
+            max-width: none;
+            margin-right: 11px;
+        }
+
+        .nav > li > a > i {
+            max-width: none;
+            margin-right: 11px;
+        }
+
+    </style>
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+</head>
+<body onload="SetMenu()">
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" id="cmsAnchor" style="width:auto" href="@Url.Action("DashBoard","Home")">@HttpContext.Current.Application[SZHPCMS.Common.Constants.SESSION_CMS_TITLE]</a>
+                @*<img src="~/Content/images/szhp-logo.gif" />*@
+            </div>
+
+            <div class="pull-right" style="display:none">
+
+                @if (Session[SZHPCMS.Common.Constants.SELECTED_LANGUAGE].ToString().Equals("en"))
+                {
+
+                    @Html.ActionLink(@SZHPCMS.Utilities.LocalizedString.T("lblArabic"), "SetCulture", "Home", new { lang = "ar", returnUrl = this.Request.RawUrl }, null)
+
+
+                }
+
+                else if (Session[SZHPCMS.Common.Constants.SELECTED_LANGUAGE].ToString().Equals("ar"))
+                {
+
+                    @Html.ActionLink(@SZHPCMS.Utilities.LocalizedString.T("lblEnglish"), "SetCulture", "Home", new { lang = "en", returnUrl = this.Request.RawUrl }, null)
+                }
+
+
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        @*<li>
+                                <a href="@Url.Action("Login","Home")"><i class="fa fa-gear fa-fw"></i> Login</a>
+                            </li>
+                            <li class="divider"></li>*@
+                        <li>
+                            <a href='@Url.Action("ChangePassword", "User")'><i class="fa fa-sign-out fa-fw"></i> Change Password</a>
+                        </li>
+                        <li>
+                            <a href='@Url.Action("Logout","User")'><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>                      
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+        </nav>
+
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse collapse navbar-collapse" style="padding:0px">
+                @Html.Partial("_LeftMenu")
+
+            </div>
+
+        </nav>
+        <div id="page-wrapper">
+            @RenderBody()
+
+            @*<footer><p>All right reserved. CMS</p></footer>*@
+
+        </div>
+        <div class="footer-flat">
+            <p>Copyright 2014 - 2016 &copy; SZHP CMS, All Rights Reserved</p>
+        </div>
+    </div>
+    @RenderSection("scripts", required: false)
+    <script>
+
+        function SetMenu() {
+
+            var url = window.location.pathname;
+
+            if (url == "/User/ChangePassword") {
+
+                $('#Home').addClass('active-menu');
+                return;
+            }
+
+
+            var anchor = $("a[href=" + '"' + url + '"' + "]");
+
+            if (anchor.length == 0) {
+
+                var Tempurl = url.substr(1, url.length); 
+
+                var splitArr = Tempurl.split('/')[0];
+
+                url = '/' + splitArr + '/Index';
+
+                
+
+                anchor = $("a[href=" + '"' + url + '"' + "]");
+
+            }
+
+
+
+            if (anchor.parents("#subMenuGeneral").length > 0) {
+
+                $("#subMenuGeneral").removeClass("collapse");
+            }
+
+            else if (anchor.parents("#subMenuContent").length > 0) {
+
+                $("#subMenuContent").removeClass("collapse");
+            }
+
+            else if (anchor.parents("#subMenuArchive").length > 0) {
+
+                $("#subMenuArchive").removeClass("collapse");
+            }
+
+            else if (anchor.parents("#subMenuContact").length > 0) {
+
+                $("#subMenuContact").removeClass("collapse");
+            }
+
+            switch (url) {
+
+                case "/":
+                    $('#Home').addClass('active-menu');
+                    break;
+
+                default:
+
+                    if (anchor.length == 1) {
+                        anchor.addClass('active-menu');
+                    }
+                    else if (anchor.length > 1) {
+                        anchor = $('#' + anchor.attr("id")).addClass('active-menu');
+                    }
+
+                    break;
+
+            }
+
+            $('input[type="text"]:first').focus();
+            
+        }
+
+
+
+    </script>
+
+
+</body>
+
+
+</html>

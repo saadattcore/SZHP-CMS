@@ -1,0 +1,100 @@
+﻿@model IEnumerable<SZHPCMS.Models.OpenDataViewModel>
+
+@{
+    ViewBag.Title = "Open Data";
+}
+
+@section Header{
+    <link href="~/Content/assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+}
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                Open Data
+            </h1>
+            @if (TempData[SZHPCMS.Common.Constants.MESSAGE] != null)
+            {
+                <div class="success">@TempData[SZHPCMS.Common.Constants.MESSAGE]</div>
+            }
+        </div>
+    </div>
+    <!-- /. ROW  -->
+    <div class="row">
+        <div class="col-md-12">
+
+            @using (Html.BeginForm("PerformActionOpenData", "Project"))
+            {
+                @Html.AntiForgeryToken()
+                  <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        @Html.ActionLink("Create New", "CreateUpdate","OpenData")
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover" id="tblData">
+                                <thead>
+                                    <tr>
+                                        <th class="th-checkbox"><input type="checkbox" id="chkBoxHeader" /></th>
+                                        <th>@Html.DisplayNameFor(model => model.TitleEn)</th>
+                                        <th>@Html.DisplayNameFor(model => model.TitleAr)</th>
+                                        <th>@Html.DisplayNameFor(model => model.PublicationDate)</th>
+                                        <th class="text-center" style="width:12%">@Html.DisplayNameFor(model => model.RowStatus)</th>
+                                        <th class="text-center" style="width:12%">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td><input type="checkbox" name="chkBoxItem" value="@item.OpenDataId" /></td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TitleEn)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TitleAr)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.PublicationDate)
+                                            </td>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(modelItem => item.RowStatus)
+                                            </td>
+                                            <td class="text-center">
+                                                <a onclick="UpdateMenu(this, '/OpenData/CreateUpdate')" class="btn btn-primary" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil-square-o"></i></a>
+                                                <a class="btn btn-danger" data-toggle="tooltip" data-original-title="Delete" onclick="DeleteMenu(this, '/Project/DeleteOpenData')"><i class="fa fa-trash-o"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="dv-actions">
+                            <div class="form-group">
+                                <div class="col-md-4 nopadding">
+                                    @Html.DropDownList("ddlActions", (List<SelectListItem>)ViewBag.DropDownMenus)
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="submit" value="Go" class="btn btn-default" id="btnAction" />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!--End Advanced Tables -->
+            }
+
+
+
+        </div>
+    </div>
+
+</div>
+
+@section scripts{
+
+    @Scripts.Render("~/Content/CMSListing");
+}
